@@ -27,7 +27,7 @@
 			  <div>
 			    <label for="genderMember">Sexe</label>
 			    <div class="col-lg-4">
-			      <form:input type="radio" path="genderMember" placeholder="s"/>
+			      <form:input path="genderMember" placeholder="s"/>
 			    </div>
 			  </div>
 			  

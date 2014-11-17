@@ -49,7 +49,13 @@ Récupérer le projet (au choix):
 
 
 - Via [SourceTree](http://www.sourcetreeapp.com):
-  > à rédiger ?
+  > Cliquer sur "Cloner / Nouveau"
+  
+  > **Source / URL** git@github.com:MValan/HEIAgile.git
+  
+  > **Destination** Le chemin où vous souhaitez stocker le projet sur votre PC, puis "Cloner".
+  
+  > Dans **Eclipse > Import > Maven Project > **  le chemin où est stocké le projet sur votre ordinateur...
 
 
 Connection base de données commune MySQL:

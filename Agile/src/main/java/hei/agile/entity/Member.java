@@ -29,12 +29,11 @@ public class Member {
 
 	public Member() {
 		
-		super();
 	}
 
 	public Member(String nameMember, String nicknameMember,
 			Boolean genderMember, Date birthDateMember) {
-		super();
+		
 		this.nameMember = nameMember;
 		this.nicknameMember = nicknameMember;
 		this.genderMember = genderMember;

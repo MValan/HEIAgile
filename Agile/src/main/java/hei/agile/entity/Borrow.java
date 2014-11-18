@@ -1,10 +1,12 @@
 package hei.agile.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Borrow {
@@ -13,13 +15,18 @@ public class Borrow {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idBorrow;
 	
-	@Column (name="idBook")
-	private long idBook;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idBook", nullable = false)
+	private Book book;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idMember", nullable = false)
+	private Member member;
 
-	public Borrow(long idBorrow, long idBook) {
+	public Borrow(Book book, Member member) {
 		super();
-		this.idBorrow = idBorrow;
-		this.idBook = idBook;
+		this.book = book;
+		this.member = member;
 	}
 
 	public Borrow() {
@@ -32,14 +39,6 @@ public class Borrow {
 
 	public void setIdBorrow(long idBorrow) {
 		this.idBorrow = idBorrow;
-	}
-
-	public long getIdBook() {
-		return idBook;
-	}
-
-	public void setIdBook(long idBook) {
-		this.idBook = idBook;
 	}
 	
 	

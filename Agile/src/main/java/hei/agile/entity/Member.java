@@ -7,40 +7,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "member")
 public class Member {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idMember;
-	
-	@Column (name="nameMember")
+
+	@Column(name = "nameMember")
 	private String nameMember;
-	
-	@Column (name="nicknameMember")
+
+	@Column(name = "nicknameMember")
 	private String nicknameMember;
-	
-	@Column (name="genderMember")
-	private Boolean genderMember;
-	
-	@Column (name="birthDateMember")
+
+	@Column(name = "genderMember")
+	private String genderMember;
+
+	@Column(name = "birthDateMember")
 	private Date birthDateMember;
 
 	public Member() {
-		
+
 	}
 
 	public Member(String nameMember, String nicknameMember,
-			Boolean genderMember, Date birthDateMember) {
-		
+			String genderMember, Date birthDateMember) {
+
 		this.nameMember = nameMember;
 		this.nicknameMember = nicknameMember;
 		this.genderMember = genderMember;
 		this.birthDateMember = birthDateMember;
 	}
-	
-	
 
 	public long getIdMember() {
 		return idMember;
@@ -62,11 +62,11 @@ public class Member {
 		this.nicknameMember = nicknameMember;
 	}
 
-	public Boolean getGenderMember() {
+	public String getGenderMember() {
 		return genderMember;
 	}
 
-	public void setGenderMember(Boolean genderMember) {
+	public void setGenderMember(String genderMember) {
 		this.genderMember = genderMember;
 	}
 

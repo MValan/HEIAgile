@@ -13,21 +13,22 @@
 			  <div>
 			    <label for="nameMember">Nom</label>
 			    <div>
-			    	<form:input path="nameMember" class="form-control" placeholder="Nom"/>
+			    	<form:input path="nameMember" placeholder="Nom"/>
 			    </div>
 			  </div>
 			  
 			  <div>
 			    <label for="nicknameMember">Prénom</label>
-			    <div class="col-lg-4">
+			    <div>
 			      <form:input path="nicknameMember" placeholder="Prénom"/>
 			    </div>
 			  </div>
 			  
 			  <div>
 			    <label for="genderMember">Sexe</label>
-			    <div class="col-lg-4">
-			      <form:input path="genderMember" placeholder="s"/>
+			    <div>
+			      <form:radiobutton path="genderMember" value="M"/>Male
+			      <form:radiobutton path="genderMember" value="F"/>Female
 			    </div>
 			  </div>
 			  

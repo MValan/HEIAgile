@@ -38,8 +38,7 @@ public class MemberController {
 			SessionStatus sessionStatus) {
 
 		memberService.saveMember(member);
-		logger.info("Ajout du membre : {} {}", member.getNameMember(),
-				member.getNicknameMember());
+		logger.info("Ajout du membre : {} {}", member.getFirstNameMember(), member.getLastNameMember());
 		sessionStatus.setComplete();
 
 		return "members/AddMemberForm";

@@ -46,19 +46,19 @@ public class Member {
 		return idMember;
 	}
 
-	public String getNameMember() {
+	public String getLastNameMember() {
 		return lastNameMember;
 	}
 
-	public void setNameMember(String lastNameMember) {
+	public void setLastNameMember(String lastNameMember) {
 		this.lastNameMember = lastNameMember;
 	}
 
-	public String getNicknameMember() {
+	public String getFirstNameMember() {
 		return firstNameMember;
 	}
 
-	public void setNicknameMember(String firstNameMember) {
+	public void setFirstNameMember(String firstNameMember) {
 		this.firstNameMember = firstNameMember;
 	}
 

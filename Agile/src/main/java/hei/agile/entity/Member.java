@@ -17,11 +17,11 @@ public class Member {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idMember;
 
-	@Column(name = "nameMember")
-	private String nameMember;
+	@Column(name = "lastNameMember")
+	private String lastNameMember;
 
-	@Column(name = "nicknameMember")
-	private String nicknameMember;
+	@Column(name = "firstNameMember")
+	private String firstNameMember;
 
 	@Column(name = "genderMember")
 	private String genderMember;
@@ -33,11 +33,11 @@ public class Member {
 
 	}
 
-	public Member(String nameMember, String nicknameMember,
+	public Member(String lastNameMember, String firstNameMember,
 			String genderMember, Date birthDateMember) {
 
-		this.nameMember = nameMember;
-		this.nicknameMember = nicknameMember;
+		this.lastNameMember = lastNameMember;
+		this.firstNameMember = firstNameMember;
 		this.genderMember = genderMember;
 		this.birthDateMember = birthDateMember;
 	}
@@ -47,19 +47,19 @@ public class Member {
 	}
 
 	public String getNameMember() {
-		return nameMember;
+		return lastNameMember;
 	}
 
-	public void setNameMember(String nameMember) {
-		this.nameMember = nameMember;
+	public void setNameMember(String lastNameMember) {
+		this.lastNameMember = lastNameMember;
 	}
 
 	public String getNicknameMember() {
-		return nicknameMember;
+		return firstNameMember;
 	}
 
-	public void setNicknameMember(String nicknameMember) {
-		this.nicknameMember = nicknameMember;
+	public void setNicknameMember(String firstNameMember) {
+		this.firstNameMember = firstNameMember;
 	}
 
 	public String getGenderMember() {

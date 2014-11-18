@@ -11,16 +11,16 @@
 	
 			<form:form method="POST" commandName="member" class="form-horizontal">
 			  <div>
-			    <label for="nameMember">Nom</label>
+			    <label for="lastNameMember">Nom</label>
 			    <div>
-			    	<form:input path="nameMember" placeholder="Nom"/>
+			    	<form:input path="lastNameMember" placeholder="Nom"/>
 			    </div>
 			  </div>
 			  
 			  <div>
-			    <label for="nicknameMember">Prénom</label>
+			    <label for="firstNameMember">Prénom</label>
 			    <div>
-			      <form:input path="nicknameMember" placeholder="Prénom"/>
+			      <form:input path="firstNameMember" placeholder="Prénom"/>
 			    </div>
 			  </div>
 			  

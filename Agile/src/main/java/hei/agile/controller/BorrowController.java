@@ -25,7 +25,7 @@ public class BorrowController {
     public String getForm(ModelMap model) {
 				
 		model.addAttribute("books", borrowService.listBooksName());		
-		logger.debug("Ici, "+borrowService.listBooksName());
+		logger.debug("On fait de l'autocomplete YOLOWW");
 		
         return "borrow/BorrowBookForm";
     }

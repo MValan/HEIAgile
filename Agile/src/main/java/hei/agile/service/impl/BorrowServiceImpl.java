@@ -1,12 +1,15 @@
 package hei.agile.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import hei.agile.dao.BookDAO;
 import hei.agile.dao.BorrowDAO;
@@ -29,27 +32,25 @@ public String listBooksName(){
 		String script = null;
 		List<Book> allBooks = bookDAO.findAll();
 		//Get all books
-		String[] allBooksTitle = new String[allBooks.size()];
-		//We only wants the name of the book
 		int i = 0;
+		String availableTags = "";
 		for (Book book : allBooks) {
-			allBooksTitle[i] = book.getTitleBook();
+			if(i !=0){
+				availableTags = availableTags +",";
+			}
+			availableTags = availableTags +"{label:\""+book.getTitleBook()+"\", value:"+book.getIdBook()+"}";
 			i++;
 		}
-		//Sort names from books
 		
-				
-				String json = new Gson().toJson(allBooksTitle);
 				
 				script = "<script>\n";
 				script += "$( document ).ready(function() {\n";
-				script += "$(\"#booksListe\").html('"+json+"');\n";
-				script += "var availableTags = "+json+";\n";
-				script += "$(\"#titleBook\").autocomplete({source: availableTags, minLength: 3});\n";
+				script += "$(\"#booksListe\").html('"+availableTags+"');\n";
+				script += "var availableTags = ["+availableTags+"];\n";
+				script += "$(\"#titleBook\").autocomplete({source: availableTags, focus: function(event,ui ) {$(\"#titleBook\").val(ui.item.label);return false;},select: function(event, ui) {$(\"#titleBook\").val(ui.item.label);$(\"#titleBook\").attr(\"data-value\",ui.item.value);return false;}});\n";
 				script += "});\n";
+				script += "$(\"#getValue\").click(function(){alert($(\"#titleBook\").attr(\"data-value\"));});\n";
 				script += "</script>\n";
-				
-		//Generate new Json Script, to autocomplete the form
 		
 		return script;
 				

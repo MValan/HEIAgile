@@ -38,7 +38,7 @@ public class MemberController {
 			SessionStatus sessionStatus) {
 
 		logger.info("Ajout du membre : Nom:{} Prenom:{} Sexe:{} DateNaiss:{}",
-				member.getNameMember(), member.getNicknameMember(),
+				member.getLastNameMember(), member.getFirstNameMember(),
 				member.getGenderMember(), member.getBirthDateMember());
 		memberService.saveMember(member);
 		sessionStatus.setComplete();

@@ -37,8 +37,10 @@ public class MemberController {
 	public String addMember(@ModelAttribute("member") Member member,
 			SessionStatus sessionStatus) {
 
+		logger.info("Ajout du membre : Nom:{} Prenom:{} Sexe:{} DateNaiss:{}",
+				member.getNameMember(), member.getNicknameMember(),
+				member.getGenderMember(), member.getBirthDateMember());
 		memberService.saveMember(member);
-		logger.info("Ajout du membre : {} {}", member.getFirstNameMember(), member.getLastNameMember());
 		sessionStatus.setComplete();
 
 		return "members/AddMemberForm";

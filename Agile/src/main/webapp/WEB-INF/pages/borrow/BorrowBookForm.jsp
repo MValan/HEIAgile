@@ -21,7 +21,7 @@
 				<input type="text" name="membreBorrow" id="membreBorrow" placeholder="Nom_Prénom_Date de naissance"/><br/>
 				
 				<label>Date maximale de restitution :</label>
-				<input type="date" name="dateBorrow" id="dateBorrow"/><br/>
+				<input type="date" name="dateBorrow" id="dateBorrow" value="${dateRest}" disabled/><br/>
 				
 				<input type="submit" value="Ajouter"/>
 			</form>

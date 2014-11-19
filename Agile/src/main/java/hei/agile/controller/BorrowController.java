@@ -24,7 +24,8 @@ public class BorrowController {
 	@RequestMapping(value="/borrow",method = RequestMethod.GET)
     public String getForm(ModelMap model) {
 				
-		model.addAttribute("books", borrowService.listBooksName());		
+		model.addAttribute("books", borrowService.createAutocomplete());
+		model.addAttribute("dateRest", borrowService.getBorrowDate());
 		logger.debug("On fait de l'autocomplete YOLOWW");
 		
         return "borrow/BorrowBookForm";

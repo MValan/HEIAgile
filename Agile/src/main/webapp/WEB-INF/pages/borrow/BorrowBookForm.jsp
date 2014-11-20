@@ -16,9 +16,11 @@
 			<form:form method="POST" commandName="borrow" class="form-horizontal">
 				<label>Titre de l'ouvrage* :</label>
 				<form:input path="book" class="form-control" type="text" name="titleBook" id="titleBook" placeholder="Titre"/><br/>
+				<input type="text" name="idBook" id="idBook" style="display:none;"/>
 				
 				<label>Membre* :</label>
 				<form:input path="member" class="form-control" type="text" name="membreBorrow" id="membreBorrow" placeholder="Nom_Prénom_Date de naissance"/><br/>
+				<input type="text" name="idMember" id="idMember" style="display:none;"/>
 				
 				<label>Date maximale de restitution :</label>
 				<input type="date" name="dateBorrow" id="dateBorrow" value="${dateRest}" disabled/><br/>

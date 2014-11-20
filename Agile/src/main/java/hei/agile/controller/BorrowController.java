@@ -44,16 +44,15 @@ public class BorrowController {
 	
 	@RequestMapping(value="/borrow", method = RequestMethod.POST)
 	public String addBorrow(HttpServletRequest request) {
-		long idBook = Long.parseLong(request.getParameter("book"));
-		long idMember = Long.parseLong(request.getParameter("member"));
+		long idBook = Long.parseLong(request.getParameter("idBook"));
+		long idMember = Long.parseLong(request.getParameter("idMember"));
 		
 		Book book = bookService.findOne(idBook);
 		Member member = memberService.findOne(idMember);
 		
 		Borrow borrow = new Borrow(book, member);
 		borrowService.saveBorrow(borrow);
-		//logger.info("Ajout d'un emprunt : {} {}", borrow.getBook(), borrow.getMember());
-		//sessionStatus.setComplete();
+		logger.info("Ajout d'un emprunt : {} par: {} {}", (borrow.getBook()).getTitleBook(), (borrow.getMember()).getNameMember(), (borrow.getMember()).getNicknameMember());
 		
 		return "redirect:/borrow";
     }

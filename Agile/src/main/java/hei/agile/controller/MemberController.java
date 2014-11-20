@@ -24,7 +24,7 @@ public class MemberController {
 	@Inject
 	private MemberService memberService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/members", method = RequestMethod.GET)
 	public String getForm(ModelMap model) {
 
 		model.addAttribute("member", new Member());
@@ -33,7 +33,7 @@ public class MemberController {
 		return "members/AddMemberForm";
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/members", method = RequestMethod.POST)
 	public String addMember(@ModelAttribute("member") Member member,
 			SessionStatus sessionStatus) {
 
@@ -43,6 +43,6 @@ public class MemberController {
 		memberService.saveMember(member);
 		sessionStatus.setComplete();
 
-		return "redirect:/members/addMember";
+		return "redirect:/members";
 	}
 }

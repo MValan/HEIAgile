@@ -7,7 +7,6 @@ import javax.inject.Named;
 import javax.transaction.Transactional;
 
 import hei.agile.dao.MemberDAO;
-import hei.agile.entity.Book;
 import hei.agile.entity.Member;
 import hei.agile.service.MemberService;
 
@@ -25,6 +24,11 @@ public class MemberServiceImpl implements MemberService {
 	
 	public List<Member> findAll() {
 		return membreDAO.findAll();
+	}
+	
+	@Override
+	public Member findOne(long idMember) {
+		return membreDAO.findOne(idMember);
 	}
 
 }

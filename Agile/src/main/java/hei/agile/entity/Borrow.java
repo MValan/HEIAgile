@@ -31,6 +31,7 @@ public class Borrow {
 
 	public Borrow() {
 		super();
+		// ICI System.out.println("iciii");
 	}
 
 	public long getIdBorrow() {
@@ -42,6 +43,7 @@ public class Borrow {
 	}
 	
 	public Book getBook() {
+		// ICI System.out.println("iciii");
 		return book;
 	}
 
@@ -50,6 +52,7 @@ public class Borrow {
 	}
 
 	public Member getMember() {
+		// ICI System.out.println("iciii");
 		return member;
 	}
 

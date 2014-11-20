@@ -1,19 +1,22 @@
 package hei.agile.controller;
 
+import hei.agile.entity.Book;
 import hei.agile.entity.Borrow;
+import hei.agile.entity.Member;
+import hei.agile.service.BookService;
 import hei.agile.service.BorrowService;
+import hei.agile.service.MemberService;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @Named
@@ -24,6 +27,10 @@ public class BorrowController {
 	
 	@Inject
     private BorrowService borrowService;
+	@Inject
+    private BookService bookService;
+	@Inject
+    private MemberService memberService;
 	
 	@RequestMapping(value="/borrow",method = RequestMethod.GET)
     public String getForm(ModelMap model) {
@@ -36,11 +43,17 @@ public class BorrowController {
     }
 	
 	@RequestMapping(value="/borrow", method = RequestMethod.POST)
-	public String addBorrow(@ModelAttribute("borrow") Borrow borrow, SessionStatus sessionStatus) {
-		System.out.println("ici");
+	public String addBorrow(HttpServletRequest request) {
+		long idBook = Long.parseLong(request.getParameter("book"));
+		long idMember = Long.parseLong(request.getParameter("member"));
+		
+		Book book = bookService.findOne(idBook);
+		Member member = memberService.findOne(idMember);
+		
+		Borrow borrow = new Borrow(book, member);
 		borrowService.saveBorrow(borrow);
-		logger.info("Ajout d'un emprunt : {} {}", borrow.getBook(), borrow.getMember());
-		sessionStatus.setComplete();
+		//logger.info("Ajout d'un emprunt : {} {}", borrow.getBook(), borrow.getMember());
+		//sessionStatus.setComplete();
 		
 		return "redirect:/borrow";
     }

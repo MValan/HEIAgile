@@ -7,67 +7,66 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "member")
 public class Member {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idMember;
-	
-	@Column (name="nameMember")
-	private String nameMember;
-	
-	@Column (name="nicknameMember")
-	private String nicknameMember;
-	
-	@Column (name="genderMember")
-	private Boolean genderMember;
-	
-	@Column (name="birthDateMember")
+
+	@Column(name = "lastNameMember")
+	private String lastNameMember;
+
+	@Column(name = "firstNameMember")
+	private String firstNameMember;
+
+	@Column(name = "genderMember")
+	private String genderMember;
+
+	@Column(name = "birthDateMember")
 	private Date birthDateMember;
 
 	public Member() {
-		
-		super();
+
 	}
 
-	public Member(String nameMember, String nicknameMember,
-			Boolean genderMember, Date birthDateMember) {
-		super();
-		this.nameMember = nameMember;
-		this.nicknameMember = nicknameMember;
+	public Member(String lastNameMember, String firstNameMember,
+			String genderMember, Date birthDateMember) {
+
+		this.lastNameMember = lastNameMember;
+		this.firstNameMember = firstNameMember;
 		this.genderMember = genderMember;
 		this.birthDateMember = birthDateMember;
 	}
-	
-	
 
 	public long getIdMember() {
 		return idMember;
 	}
 
-	public String getNameMember() {
-		return nameMember;
+	public String getLastNameMember() {
+		return lastNameMember;
 	}
 
-	public void setNameMember(String nameMember) {
-		this.nameMember = nameMember;
+	public void setLastNameMember(String lastNameMember) {
+		this.lastNameMember = lastNameMember;
 	}
 
-	public String getNicknameMember() {
-		return nicknameMember;
+	public String getFirstNameMember() {
+		return firstNameMember;
 	}
 
-	public void setNicknameMember(String nicknameMember) {
-		this.nicknameMember = nicknameMember;
+	public void setFirstNameMember(String firstNameMember) {
+		this.firstNameMember = firstNameMember;
 	}
 
-	public Boolean getGenderMember() {
+	public String getGenderMember() {
 		return genderMember;
 	}
 
-	public void setGenderMember(Boolean genderMember) {
+	public void setGenderMember(String genderMember) {
 		this.genderMember = genderMember;
 	}
 

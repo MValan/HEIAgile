@@ -16,11 +16,11 @@ public class Borrow {
 	private long idBorrow;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idBook", nullable = false)
+    @JoinColumn(name = "idBook")
 	private Book book;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idMember", nullable = false)
+    @JoinColumn(name = "idMember")
 	private Member member;
 
 	public Borrow(Book book, Member member) {
@@ -41,5 +41,20 @@ public class Borrow {
 		this.idBorrow = idBorrow;
 	}
 	
-	
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
 }

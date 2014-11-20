@@ -14,6 +14,7 @@ import hei.agile.dao.BookDAO;
 import hei.agile.dao.BorrowDAO;
 import hei.agile.dao.MemberDAO;
 import hei.agile.entity.Book;
+import hei.agile.entity.Borrow;
 import hei.agile.entity.Member;
 import hei.agile.service.BorrowService;
 
@@ -75,5 +76,9 @@ public String getBorrowDate(){
 	c.setTime(today); 
 	c.add(Calendar.DATE, 30);
 	return(FormattedDATE.format(c.getTime()));
+}
+
+public void saveBorrow(Borrow borrow) {
+	borrowDAO.save(borrow);
 }
 }

@@ -13,19 +13,18 @@
 			<h1>Ajouter un emprunt</h1>
 			
 			<div id="booksListe" style="display: none;">${books}</div>
-			<form>
+			<form:form method="POST" commandName="borrow" class="form-horizontal">
 				<label>Titre de l'ouvrage* :</label>
-				<input type="text" name="titleBook" id="titleBook" placeholder="Titre"/><br/>
+				<form:input path="book" class="form-control" type="text" name="titleBook" id="titleBook" placeholder="Titre"/><br/>
 				
 				<label>Membre* :</label>
-				<input type="text" name="membreBorrow" id="membreBorrow" placeholder="Nom_Prénom_Date de naissance"/><br/>
+				<form:input path="member" class="form-control" type="text" name="membreBorrow" id="membreBorrow" placeholder="Nom_Prénom_Date de naissance"/><br/>
 				
 				<label>Date maximale de restitution :</label>
 				<input type="date" name="dateBorrow" id="dateBorrow" value="${dateRest}" disabled/><br/>
 				
-				<input type="submit" value="Ajouter"/>
-			</form>
-			
+				<button type="submit" class="btn btn-primary">Ajouter</button>
+			</form:form>
 		</div>	
 	</body>
 </html>

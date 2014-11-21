@@ -34,7 +34,7 @@ public class BorrowServiceImpl implements BorrowService {
 public String createAutocomplete(){
 		
 		String script = null;
-		List<Book> allBooks = bookDAO.findAll();
+		List<Book> allBooks = bookDAO.findAllAvailable();
 		List<Member> allMembers = memberDAO.findAll();
 		//Get all books
 		int i = 0;
@@ -74,7 +74,7 @@ public String getBorrowDate(){
 	SimpleDateFormat FormattedDATE  = new SimpleDateFormat("yyyy-MM-dd");
 	Calendar c = Calendar.getInstance(); 
 	c.setTime(today); 
-	c.add(Calendar.DATE, 30);
+	c.add(Calendar.DATE, 21);
 	return(FormattedDATE.format(c.getTime()));
 }
 

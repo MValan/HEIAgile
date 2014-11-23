@@ -14,12 +14,25 @@
 			
 			<div id="booksListe" style="display: none;">${books}</div>
 			<form:form method="POST" commandName="borrow" class="form-horizontal">
+
+				<c:choose>
+					<c:when test="${not empty  errors}">
+						<div class="error">
+							<c:forEach items="${errors}" var="err">
+								${err}
+								<br/>
+							</c:forEach>
+						</div>
+					</c:when>
+				</c:choose>
+
+
 				<label>Titre de l'ouvrage* :</label>
 				<form:input path="book" class="form-control" type="text" name="titleBook" id="titleBook" placeholder="Titre"/><br/>
 				<input type="text" name="idBook" id="idBook" style="display:none;"/>
 				
 				<label>Membre* :</label>
-				<form:input path="member" class="form-control" type="text" name="membreBorrow" id="membreBorrow" placeholder="Nom_Prénom_Date de naissance"/><br/>
+				<form:input path="member" class="form-control" type="text" name="membreBorrow" id="membreBorrow" placeholder="Nom_Prï¿½nom_Date de naissance"/><br/>
 				<input type="text" name="idMember" id="idMember" style="display:none;"/>
 				
 				<label>Date maximale de restitution :</label>

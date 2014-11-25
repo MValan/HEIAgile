@@ -51,7 +51,6 @@ public class BorrowController {
 
 		List<String> errors = new ArrayList<>();
 
-		idBook=10;
 		Book book = bookService.findOne(idBook);
 
 		if (book == null) {

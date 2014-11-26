@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 
 
 @Entity
@@ -23,16 +23,16 @@ public class Member {
 	private long idMember;
 
 	@Column(name = "lastNameMember")
-	@Size(min=2, max=50, message="size of lastNameMember must be between 2 and 50")
+	@Pattern(regexp="[a-zA-Z]+[-]*[a-zA-Z]+", message="lastNameMember must be a valide name")
 	private String lastNameMember;
 
 	@Column(name = "firstNameMember")
-	@Size(min=2, max=50, message="size of firstNameMember must be between 2 and 50")
+	@Pattern(regexp="[a-zA-Z]+[-]*[a-zA-Z]+", message="firstNameMember must be a valide name")
 	private String firstNameMember;
 
 	@Column(name = "genderMember")
-	@NotNull(message="genderMember is empty")
-	@Size(min=1, max=1, message="genderMember can't be empty")
+	@NotNull(message="genderMember can't be null")
+	@Pattern(regexp="[FM]", message="genderMember must be 'F' or 'M'")
 	private String genderMember;
 
 	@Column(name = "birthDateMember")

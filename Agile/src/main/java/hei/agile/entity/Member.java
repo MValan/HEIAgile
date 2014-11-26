@@ -73,6 +73,10 @@ public class Member {
 		return genderMember;
 	}
 
+	public void setGenderMember(String genderMember) {
+		this.genderMember = genderMember;
+	}
+
 	public Date getBirthDateMember() {
 		return birthDateMember;
 	}

@@ -15,36 +15,21 @@ import hei.agile.service.MemberService;
 public class MemberServiceImpl implements MemberService {
 	
 	@Inject
-<<<<<<< HEAD
 	private MemberDAO memberDAO;
 
 	@Override
 	public void saveMember(Member member) {
-		
 		memberDAO.save(member);
 	}
 
 	@Override
 	public List<Member> findAll() {
-		
-		List<Member> members = memberDAO.findAll();
-		return members;
-=======
-	private MemberDAO membreDAO;
-
-	public void saveMember(Member member) {
-		
-		membreDAO.save(member);
-	}
-	
-	public List<Member> findAll() {
-		return membreDAO.findAll();
+		return memberDAO.findAll();
 	}
 	
 	@Override
 	public Member findOne(long idMember) {
-		return membreDAO.findOne(idMember);
->>>>>>> borrowing_books
+		return memberDAO.findOne(idMember);
 	}
 
 }

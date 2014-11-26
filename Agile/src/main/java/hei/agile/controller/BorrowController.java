@@ -69,7 +69,7 @@ public class BorrowController {
 		if (errors.isEmpty()) {
 			Borrow borrow = new Borrow(book, member);
 			borrowService.saveBorrow(borrow);
-			logger.info("Ajout d'un emprunt : {} par: {} {}", (borrow.getBook()).getTitleBook(), (borrow.getMember()).getNameMember(), (borrow.getMember()).getNicknameMember());
+			logger.info("Ajout d'un emprunt : {} par: {} {}", (borrow.getBook()).getTitleBook(), (borrow.getMember()).getFirstNameMember(), (borrow.getMember()).getLastNameMember());
 			return "redirect:/borrow";
 		} else {
 			return "borrow/BorrowBookForm";

@@ -54,7 +54,7 @@ public class BorrowServiceImpl implements BorrowService {
             if (j != 0) {
                 availableMembers = availableMembers + ",";
             }
-            availableMembers = availableMembers + "{label:\"" + member.getNameMember() + "_" + member.getNicknameMember() + " " + df.format(member.getBirthDateMember()) + "\", value:" + member.getIdMember() + "}";
+            availableMembers = availableMembers + "{label:\"" + member.getLastNameMember() + "_" + member.getFirstNameMember() + " " + df.format(member.getBirthDateMember()) + "\", value:" + member.getIdMember() + "}";
             j++;
         }
         script = "<script type='text/javascript'>\n";

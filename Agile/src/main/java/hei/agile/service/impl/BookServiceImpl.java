@@ -22,13 +22,16 @@ public class BookServiceImpl implements BookService {
 			return bookDAO.findAll();
 	}
 
-	@Override
 	public Book findOne(long idBook) {
 		return bookDAO.findOne(idBook);
 	}
 
-	@Override
 	public List<Book> findAllAvailable() {
 		return bookDAO.findAllAvailable();
+	}
+
+	public void saveBook(Book book) {
+		bookDAO.save(book);
+		
 	}
 }

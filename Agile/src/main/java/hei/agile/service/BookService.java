@@ -8,4 +8,6 @@ public interface BookService {
 	public Book findOne(long idBook);
 
 	public List<Book> findAllAvailable();
+	
+	public void saveBook(Book book);
 }

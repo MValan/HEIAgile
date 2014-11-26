@@ -20,13 +20,21 @@ public class Book {
 	@Column (name="titleBook")
 	private String titleBook;
 	
+	@Column (name="ISBN")
+	private String isbn;
+	
+	@Column (name="PriceBook")
+	private Float priceBook;
+	
 	@OneToMany(cascade={CascadeType.ALL}, mappedBy="book")
 	private List<Borrow> borrow;
 
-	public Book(long idBook, String titleBook) {
+	public Book(long idBook, String isbn, String titleBook, Float priceBook) {
 		super();
 		this.idBook = idBook;
+		this.isbn = isbn;
 		this.titleBook = titleBook;
+		this.priceBook = priceBook;
 	}
 
 	public Book() {
@@ -48,7 +56,20 @@ public class Book {
 	public void setTitleBook(String titleBook) {
 		this.titleBook = titleBook;
 	}
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
 	
-	
+	public Float getPriceBook() {
+		return priceBook;
+	}
+
+	public void setPriceBook(Float priceBook) {
+		this.priceBook = priceBook;
+	}
 	
 }

@@ -41,6 +41,6 @@ public class BookController {
 		bookService.saveBook(book);
 		sessionStatus.setComplete();
 		
-		return "books/AddBook";		
+		return "redirect:/books/books";	
 	}
 }

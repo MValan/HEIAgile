@@ -37,7 +37,7 @@
 				
 				
 				<label>Membre* :</label>
-				<form:input path="member" class="form-control" type="text" name="membreBorrow" id="membreBorrow" placeholder="Nom_Prï¿½nom_Date de naissance"/>
+				<form:input path="member" class="form-control" type="text" name="membreBorrow" id="membreBorrow" placeholder="Nom_Prénom_Date de naissance"/>
 				<div class="message-erreur"></div><br/>
 				<input type="text" name="idMember" id="idMember" style="display:none;"/>
 				

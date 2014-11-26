@@ -22,5 +22,6 @@
 	  <servlet-name>mvc-dispatcher</servlet-name>
 	  <url-pattern>/members/*</url-pattern>
 	  <url-pattern>/borrow/*</url-pattern>
+	  <url-pattern>/books/*</url-pattern>
 	</servlet-mapping>
 </web-app>

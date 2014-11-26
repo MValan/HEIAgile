@@ -15,6 +15,7 @@ import hei.agile.service.MemberService;
 public class MemberServiceImpl implements MemberService {
 	
 	@Inject
+<<<<<<< HEAD
 	private MemberDAO memberDAO;
 
 	@Override
@@ -28,6 +29,22 @@ public class MemberServiceImpl implements MemberService {
 		
 		List<Member> members = memberDAO.findAll();
 		return members;
+=======
+	private MemberDAO membreDAO;
+
+	public void saveMember(Member member) {
+		
+		membreDAO.save(member);
+	}
+	
+	public List<Member> findAll() {
+		return membreDAO.findAll();
+	}
+	
+	@Override
+	public Member findOne(long idMember) {
+		return membreDAO.findOne(idMember);
+>>>>>>> borrowing_books
 	}
 
 }

@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+
+	.message-erreur{
+		display: inline;
+		color:red;
+		padding: 0 0 0 10px;
+		display: none;
+	}

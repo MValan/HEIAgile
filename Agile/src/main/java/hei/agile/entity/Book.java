@@ -1,10 +1,14 @@
 package hei.agile.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Book {
@@ -15,6 +19,9 @@ public class Book {
 	
 	@Column (name="titleBook")
 	private String titleBook;
+	
+	@OneToMany(cascade={CascadeType.ALL}, mappedBy="book")
+	private List<Borrow> borrow;
 
 	public Book(long idBook, String titleBook) {
 		super();

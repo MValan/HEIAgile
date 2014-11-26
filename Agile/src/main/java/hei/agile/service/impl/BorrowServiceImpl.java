@@ -57,13 +57,13 @@ public class BorrowServiceImpl implements BorrowService {
             availableMembers = availableMembers + "{label:\"" + member.getNameMember() + "_" + member.getNicknameMember() + " " + df.format(member.getBirthDateMember()) + "\", value:" + member.getIdMember() + "}";
             j++;
         }
-        script = "<script>\n";
-        script += "$( document ).ready(function() {\n";
+        script = "<script type='text/javascript'>\n";
+
         script += "var availableBooks = [" + availableBooks + "];\n";
-        script += "$(\"#titleBook\").autocomplete({source: availableBooks, focus: function(event,ui ) {$(\"#titleBook\").val(ui.item.label);return false;},select: function(event, ui) {$(\"#titleBook\").val(ui.item.label);$(\"#titleBook\").attr(\"data-value\",ui.item.value);$(\"#idBook\").val(ui.item.value);return false;}});\n";
+        script += "$(\"#titleBook\").autocomplete({change: function(event, ui){checkTitle(ui.item.label);},source: availableBooks, focus: function(event,ui ) {$(\"#titleBook\").val(ui.item.label);return false;},select: function(event, ui) {$(\"#titleBook\").val(ui.item.label);$(\"#titleBook\").attr(\"data-value\",ui.item.value);$(\"#idBook\").val(ui.item.value);return false;}});\n";
         script += "var availableMembers = [" + availableMembers + "];\n";
-        script += "$(\"#membreBorrow\").autocomplete({source: availableMembers, focus: function(event,ui ) {$(\"#membreBorrow\").val(ui.item.label);return false;},select: function(event, ui) {$(\"#membreBorrow\").val(ui.item.label);$(\"#membreBorrow\").attr(\"data-value\",ui.item.value);$(\"#idMember\").val(ui.item.value);return false;}});\n";
-        script += "});\n";
+        script += "$(\"#membreBorrow\").autocomplete({change: function(event, ui){checkMember(ui.item.label);},source: availableMembers, focus: function(event,ui ) {$(\"#membreBorrow\").val(ui.item.label);return false;},select: function(event, ui) {$(\"#membreBorrow\").val(ui.item.label);$(\"#membreBorrow\").attr(\"data-value\",ui.item.value);$(\"#idMember\").val(ui.item.value);return false;}});\n";
+        script += "console.log(availableBooks);\n";
         script += "</script>\n";
         getBorrowDate();
         return script;

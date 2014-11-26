@@ -1,5 +1,5 @@
 $(function() {
-
+	var valid = false;
 	$("#titleBook").keyup(
 			function() {
 				if (!$("#titleBook").val().match(/^[a-z]+$/i)) {

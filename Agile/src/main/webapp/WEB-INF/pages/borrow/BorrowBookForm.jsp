@@ -15,7 +15,7 @@
 			<h1>Ajouter un emprunt</h1>
 			
 			
-			<form:form method="POST" commandName="borrow" class="form-horizontal">
+			<form:form method="POST" id="insertBorrow" commandName="borrow" class="form-horizontal">
 
 				<c:choose>
 					<c:when test="${not empty  errors}">
@@ -49,13 +49,23 @@
 				
 				<button type="submit" class="btn btn-primary" id="submit" style="display: none;">Ajouter</button>
 			</form:form>
+			<div id="emptyBooks" style="display: none;">Il n'y à aucun livre enregistré (ou disponible) en Base de Données.<br/>Veuillez d'abord en ajouter un <a href='books/books'>ici.</a></div><br/>
+			<div id="emptyMembers" style="display: none;">Il n'y à aucun membre enregistré en Base de Données.<br/>Veuillez d'abord en ajouter un <a href='members/addMember'>ici.</a></div><br/>
 		</div>
 			
 		<script>
 		var everythingValid = false;
 		var titleValid = false;
 		var memberValid = false;
-			$(document).ready(function(){	
+			$(document).ready(function(){
+				if(availableBooks.length === 0){
+					$("#insertBorrow").hide();
+					$("#emptyBooks").show();
+				}
+				if(availableMembers.length === 0){
+					$("#insertBorrow").hide();
+					$("#emptyMembers").show();
+				}
 				$("#titleBook").bind("change paste keyup", function(){
 					checkTitle($(this).val());				
 				});

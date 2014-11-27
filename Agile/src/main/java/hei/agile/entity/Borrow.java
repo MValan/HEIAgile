@@ -1,5 +1,8 @@
 package hei.agile.entity;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,16 +25,19 @@ public class Borrow {
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idMember")
 	private Member member;
+	
+	@Column(name = "dateBorrowEnd")
+	private Date dateBorrowEnd;
 
-	public Borrow(Book book, Member member) {
+	public Borrow(Book book, Member member, Date dateBorrowEnd) {
 		super();
 		this.book = book;
 		this.member = member;
+		this.dateBorrowEnd = dateBorrowEnd;
 	}
 
 	public Borrow() {
 		super();
-		// ICI System.out.println("iciii");
 	}
 
 	public long getIdBorrow() {
@@ -43,7 +49,6 @@ public class Borrow {
 	}
 	
 	public Book getBook() {
-		// ICI System.out.println("iciii");
 		return book;
 	}
 
@@ -52,7 +57,6 @@ public class Borrow {
 	}
 
 	public Member getMember() {
-		// ICI System.out.println("iciii");
 		return member;
 	}
 
@@ -60,4 +64,13 @@ public class Borrow {
 		this.member = member;
 	}
 
+	public Date getDateBorrowEnd() {
+		return dateBorrowEnd;
+	}
+
+	public void setDateBorrowEnd(Date dateBorrowEnd) {
+		this.dateBorrowEnd = dateBorrowEnd;
+	}
+
+	
 }

@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>hei</groupId>
   <artifactId>Agile</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
   <dependencies>

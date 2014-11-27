@@ -27,8 +27,8 @@
 			  <div>
 			    <label for="genderMember">Sexe</label>
 			    <div>
-			      <form:radiobutton path="genderMember" value="M"/>Male
-			      <form:radiobutton path="genderMember" value="F"/>Female
+			      <form:radiobutton path="genderMember" value="M"/>Masculin
+			      <form:radiobutton path="genderMember" value="F"/>Féminin
 			    </div>
 			  </div>
 			  

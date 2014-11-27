@@ -37,12 +37,19 @@ public class MemberController {
 	public String addMember(@ModelAttribute("member") Member member,
 			SessionStatus sessionStatus) {
 
-		logger.info("Ajout du membre : Nom:{} Prenom:{} Sexe:{} DateNaiss:{}",
-				member.getLastNameMember(), member.getFirstNameMember(),
-				member.getGenderMember(), member.getBirthDateMember());
-		memberService.saveMember(member);
-		sessionStatus.setComplete();
-
+		if (!memberService.memberAlreadyExist(member)) {
+			logger.info(
+					"Ajout du membre : Nom:{} Prenom:{} Sexe:{} DateNaiss:{}",
+					member.getLastNameMember(), member.getFirstNameMember(),
+					member.getGenderMember(), member.getBirthDateMember());
+			memberService.saveMember(member);
+			sessionStatus.setComplete();
+		} else {
+			logger.info(
+					"Le membre : Nom:{} Prenom:{} Sexe:{} DateNaiss:{} existe déjà.",
+					member.getLastNameMember(), member.getFirstNameMember(),
+					member.getGenderMember(), member.getBirthDateMember());
+		}
 		return "redirect:/members/addMember";
 	}
 }

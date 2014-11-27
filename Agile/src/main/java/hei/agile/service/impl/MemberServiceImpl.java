@@ -32,9 +32,25 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.findOne(idMember);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean memberAlreadyExist(Member member) {
-		// TODO Auto-generated method stub
+		List<Member> members = memberDAO.findAll();
+		for (Member m : members) {
+
+			if (member.getBirthDateMember().getYear() == m.getBirthDateMember()
+					.getYear()
+					& member.getBirthDateMember().getMonth() == m
+							.getBirthDateMember().getMonth()
+					& member.getBirthDateMember().getDay() == m
+							.getBirthDateMember().getDay()) {
+				if (m.getFirstNameMember().equals(member.getFirstNameMember())
+						& m.getLastNameMember().equals(
+								member.getLastNameMember())) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 

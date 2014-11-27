@@ -18,7 +18,7 @@ Outils
   
   > Canal chat : [Slack](http://agilehei.slack.com)
   
-  > Orga projet : [Trello](https://trello.com/b/Smdx4eOV/agilehei)
+  > Orga projet : [Trello](https://trello.com/b/tY8G4BAj/scrum-agilehei)
 
 
 Récupérer le projet (au choix):

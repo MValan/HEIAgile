@@ -23,11 +23,11 @@ public class Member {
 	private long idMember;
 
 	@Column(name = "lastNameMember")
-	@Pattern(regexp="[a-zA-Z]+[-]*[a-zA-Z]+", message="lastNameMember must be a valide name")
+	@Pattern(regexp="(\\p{Alpha}|[ '-]){2,50}", message="lastNameMember must be a valide name")
 	private String lastNameMember;
 
 	@Column(name = "firstNameMember")
-	@Pattern(regexp="[a-zA-Z]+[-]*[a-zA-Z]+", message="firstNameMember must be a valide name")
+	@Pattern(regexp="(\\p{Alpha}|[ '-]){2,50}", message="firstNameMember must be a valide name")
 	private String firstNameMember;
 
 	@Column(name = "genderMember")

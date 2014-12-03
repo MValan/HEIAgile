@@ -8,6 +8,25 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
+	
+		<table>
+		<thead>
+			<tr>
+				<td>Titre</td>
+				<td>ISBN</td>
+				<td>Date d'emprunt</td>
+			</tr>
+		</thead>
+		<tbody id="borrowed">
 		
+		</tbody>
+		</table>
+		<script type="text/javascript">
+			//Remplacer le "1" par une variable idmembre
+			$.get( "return/1", function(data) {
+				  console.log(data);
+				});
+				
+		</script>
 	</body>
 </html>

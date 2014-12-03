@@ -2,6 +2,7 @@ package hei.agile.controller;
 
 import hei.agile.entity.Book;
 import hei.agile.entity.Borrow;
+import hei.agile.entity.HibernateProxyTypeAdapter;
 import hei.agile.entity.Member;
 import hei.agile.service.BookService;
 import hei.agile.service.BorrowService;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Controller
 @Named
@@ -90,6 +92,7 @@ public class BorrowController {
 	@RequestMapping(value = "/return", method = RequestMethod.GET)
 	public String getReturnBookForm(ModelMap model) {
 		model.addAttribute("borrow", new Borrow());
+		model.addAttribute("books", borrowService.createAutocomplete());
 		return "borrow/ReturnBookForm";
 
 	}
@@ -99,12 +102,19 @@ public class BorrowController {
 			@PathVariable("idmember") long idMember) {
 		List<Borrow> borrowsbymember = borrowService
 				.findBorrowByIdMember(idMember);
-
+		//System.out.println(borrowsbymember);
+		
+		for (Borrow borrow : borrowsbymember) {
+			System.out.println(borrow.getBook());
+		}
 		// A supprimer
-		borrowsbymember.add(new Borrow(
+		/*borrowsbymember.add(new Borrow(
 				new Book(1, "1234", "Livre1", (float) 5), new Member("Moi",
 						"Moi", "M", new Date())));
-
+		 */
+		/*GsonBuilder b = new GsonBuilder();
+		b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+		Gson gson = b.create();*/
 		Gson gson = new Gson();
 		return gson.toJson(borrowsbymember);
 

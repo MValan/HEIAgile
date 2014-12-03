@@ -109,4 +109,11 @@ public class BorrowController {
 		return gson.toJson(borrowsbymember);
 
 	}
+
+	@RequestMapping(value = "/return/{idmember}", method = RequestMethod.POST)
+	public String updateBorrows() {
+
+		return "redirect:/return";
+	}
+
 }

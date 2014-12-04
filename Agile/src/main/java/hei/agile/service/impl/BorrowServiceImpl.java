@@ -98,14 +98,15 @@ public class BorrowServiceImpl implements BorrowService {
 		List<Borrow> borrowsbymember = new ArrayList<Borrow>();
 
 		for (Borrow borrow : borrowDAO.findByMember_IdMember(idMember)) {
-
-			borrowsbymember.add(new Borrow(borrow.getIdBorrow(),new Book(borrow.getBook()
-					.getIdBook(), borrow.getBook().getIsbn(), borrow.getBook()
-					.getTitleBook(), borrow.getBook().getPriceBook()),
-					new Member(borrow.getMember().getLastNameMember(), borrow
-							.getMember().getFirstNameMember(), borrow
-							.getMember().getGenderMember(), borrow.getMember()
-							.getBirthDateMember())));
+			if(!borrow.isReturned()){
+				borrowsbymember.add(new Borrow(borrow.getIdBorrow(),new Book(borrow.getBook()
+						.getIdBook(), borrow.getBook().getIsbn(), borrow.getBook()
+						.getTitleBook(), borrow.getBook().getPriceBook()),
+						new Member(borrow.getMember().getLastNameMember(), borrow
+								.getMember().getFirstNameMember(), borrow
+								.getMember().getGenderMember(), borrow.getMember()
+								.getBirthDateMember())));
+			}
 		}
 		return gson.toJson(borrowsbymember);
 	}

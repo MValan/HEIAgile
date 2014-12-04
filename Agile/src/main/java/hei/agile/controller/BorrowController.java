@@ -105,7 +105,6 @@ public class BorrowController {
 	public String updateBorrows(HttpServletRequest request, ModelMap model) {
 		String [] checkedReturned = request.getParameterValues("returned");
 		for (int i = 0; i < checkedReturned.length; i++) {
-			System.out.println(Long.parseLong(checkedReturned[i]));
 			borrowService.setBorrowToReturned(Long.parseLong(checkedReturned[i]));
 		}
 		

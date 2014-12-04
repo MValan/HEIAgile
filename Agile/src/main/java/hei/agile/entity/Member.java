@@ -39,7 +39,7 @@ public class Member {
 	@Past(message="birthDateMember must be past")
 	private Date birthDateMember;
 
-	@OneToMany(cascade={CascadeType.ALL}, mappedBy="book")
+	@OneToMany(cascade={CascadeType.ALL}, mappedBy="member")
 	private List<Borrow> borrow;
 
 	public Member() {

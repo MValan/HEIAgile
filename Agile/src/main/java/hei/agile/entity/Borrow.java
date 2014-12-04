@@ -1,7 +1,6 @@
 package hei.agile.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,11 +14,11 @@ public class Borrow {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idBorrow;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
     @JoinColumn(name = "idBook")
 	private Book book;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
     @JoinColumn(name = "idMember")
 	private Member member;
 

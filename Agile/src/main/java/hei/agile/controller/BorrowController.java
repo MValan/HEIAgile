@@ -2,14 +2,12 @@ package hei.agile.controller;
 
 import hei.agile.entity.Book;
 import hei.agile.entity.Borrow;
-import hei.agile.entity.HibernateProxyTypeAdapter;
 import hei.agile.entity.Member;
 import hei.agile.service.BookService;
 import hei.agile.service.BorrowService;
 import hei.agile.service.MemberService;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,9 +22,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 @Controller
 @Named
@@ -100,13 +95,13 @@ public class BorrowController {
 	@RequestMapping(value = "/return/{idmember}", method = RequestMethod.GET)
 	public @ResponseBody String showBorrowedBooks(
 			@PathVariable("idmember") long idMember) {
-		List<Borrow> borrowsbymember = borrowService
+		String borrowsbymember = borrowService
 				.findBorrowByIdMember(idMember);
 		//System.out.println(borrowsbymember);
+		//Borrow book = borrowsbymember.get(0);
+		//System.out.println(book.getBook());
+		//System.out.println(borrowsbymember.get(0).getBook());
 		
-		for (Borrow borrow : borrowsbymember) {
-			System.out.println(borrow.getBook());
-		}
 		// A supprimer
 		/*borrowsbymember.add(new Borrow(
 				new Book(1, "1234", "Livre1", (float) 5), new Member("Moi",
@@ -115,9 +110,9 @@ public class BorrowController {
 		/*GsonBuilder b = new GsonBuilder();
 		b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
 		Gson gson = b.create();*/
-		Gson gson = new Gson();
-		return gson.toJson(borrowsbymember);
-
+		//Gson gson = new Gson();
+		//return gson.toJson(borrowsbymember);
+		return borrowsbymember;
 	}
 
 	@RequestMapping(value = "/return/{idmember}", method = RequestMethod.POST)

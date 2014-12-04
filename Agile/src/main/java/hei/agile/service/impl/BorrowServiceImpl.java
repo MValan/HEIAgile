@@ -10,6 +10,7 @@ import hei.agile.service.BorrowService;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -18,10 +19,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
+import com.google.gson.Gson;
+
 @Named
 @Transactional
-public class BorrowServiceImpl implements BorrowService {
-
+public class BorrowServiceImpl implements BorrowService {	
 	@Inject
 	private BorrowDAO borrowDAO;
 
@@ -91,8 +93,14 @@ public class BorrowServiceImpl implements BorrowService {
 		borrowDAO.save(borrow);
 	}
 
-	public List<Borrow> findBorrowByIdMember(long idMember) {
-		return borrowDAO.findByMember_IdMember(idMember);
+	public String findBorrowByIdMember(long idMember) {
+		Gson gson = new Gson();
+		List<Borrow> borrowsbymember = new ArrayList<Borrow>();
+		
+		for (Borrow borrow : borrowDAO.findByMember_IdMember(idMember)) {
+			borrowsbymember.add(new Borrow(new Book(borrow.getBook().getIdBook(), borrow.getBook().getIsbn(), borrow.getBook().getTitleBook(), borrow.getBook().getPriceBook()), new Member(borrow.getMember().getLastNameMember(), borrow.getMember().getFirstNameMember(), borrow.getMember().getGenderMember(), borrow.getMember().getBirthDateMember())));
+		}
+		return gson.toJson(borrowsbymember);
 	}
 
 }

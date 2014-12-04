@@ -98,6 +98,7 @@ public class BorrowServiceImpl implements BorrowService {
 		List<Borrow> borrowsbymember = new ArrayList<Borrow>();
 
 		for (Borrow borrow : borrowDAO.findByMember_IdMember(idMember)) {
+
 			borrowsbymember.add(new Borrow(new Book(borrow.getBook()
 					.getIdBook(), borrow.getBook().getIsbn(), borrow.getBook()
 					.getTitleBook(), borrow.getBook().getPriceBook()),

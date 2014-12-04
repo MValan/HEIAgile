@@ -18,21 +18,9 @@
 			<input type="text" name="idMember" id="idMember" style="display:none;"/>
 		</form:form>
 	
-		<form:form>
-			<table>
-				<thead>
-					<tr>
-						<td>Titre</td>
-						<td>ISBN</td>
-						<td>Date d'emprunt</td>
-						<td>Retour</td>
-					</tr>
-				</thead>
-				<tbody id="borrowed">					
-				</tbody>
-				
-			</table>
-		</form:form>
+		<div id="tofillwithborrowlist">
+		</div>
+		
 		<script>
 		var everythingValid = false;
 		var titleValid = false;
@@ -69,11 +57,35 @@
 				$.getJSON( "return/"+idMember)
 				.done(function(data){
 						console.log(data);
-						$("#borrowed").empty();
+						console.log("Membre: "+idMember);
+						$('#tofillwithborrowlist').empty();
+						var toappend="";
+						toappend+='<form:form method="POST" id="returnchecklist" commandName="borrowreturned">';
+						toappend+='<table>';
+						toappend+='<thead>';
+						toappend+='<tr>';
+						toappend+='<td>Titre</td>';
+						toappend+='<td>ISBN</td>';
+						toappend+="<td>Date d'emprunt</td>";
+						toappend+='<td>Retour</td>';
+						toappend+='</tr>';
+						toappend+='</thead>';
+						toappend+='<tbody id="borrowed">';					
+						
 						for(i=0;i<data.length;i++)
 						{
-							$("#borrowed").append("<tr><td>"+data[i].book.titleBook+"</td><td>"+data[i].book.isbn+"</td><td>A ajouter</td><td></td></tr>");
+							toappend+="<tr><td>"+data[i].book.titleBook+"</td>";
+							toappend+="<td>"+data[i].book.isbn+"</td>";
+							toappend+="<td>A ajouter</td>";
+							toappend+='<td><form:checkbox path="returned"/></td>';
+							toappend+="</tr>";
+							
+							
 						}
+						toappend+='</tbody>	';	
+						toappend+='</table>';
+						toappend+='</form:form>';
+						$('#tofillwithborrowlist').append(toappend);
 				});
 			}
 				

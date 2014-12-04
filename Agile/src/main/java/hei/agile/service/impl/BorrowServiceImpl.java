@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 
 @Named
 @Transactional
-public class BorrowServiceImpl implements BorrowService {	
+public class BorrowServiceImpl implements BorrowService {
 	@Inject
 	private BorrowDAO borrowDAO;
 
@@ -96,9 +96,15 @@ public class BorrowServiceImpl implements BorrowService {
 	public String findBorrowByIdMember(long idMember) {
 		Gson gson = new Gson();
 		List<Borrow> borrowsbymember = new ArrayList<Borrow>();
-		
+
 		for (Borrow borrow : borrowDAO.findByMember_IdMember(idMember)) {
-			borrowsbymember.add(new Borrow(new Book(borrow.getBook().getIdBook(), borrow.getBook().getIsbn(), borrow.getBook().getTitleBook(), borrow.getBook().getPriceBook()), new Member(borrow.getMember().getLastNameMember(), borrow.getMember().getFirstNameMember(), borrow.getMember().getGenderMember(), borrow.getMember().getBirthDateMember())));
+			borrowsbymember.add(new Borrow(new Book(borrow.getBook()
+					.getIdBook(), borrow.getBook().getIsbn(), borrow.getBook()
+					.getTitleBook(), borrow.getBook().getPriceBook()),
+					new Member(borrow.getMember().getLastNameMember(), borrow
+							.getMember().getFirstNameMember(), borrow
+							.getMember().getGenderMember(), borrow.getMember()
+							.getBirthDateMember())));
 		}
 		return gson.toJson(borrowsbymember);
 	}

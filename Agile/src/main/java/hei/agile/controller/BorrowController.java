@@ -87,6 +87,7 @@ public class BorrowController {
 	@RequestMapping(value = "/return", method = RequestMethod.GET)
 	public String getReturnBookForm(ModelMap model) {
 		model.addAttribute("borrow", new Borrow());
+		model.addAttribute("borrowreturned", new Borrow());
 		model.addAttribute("books", borrowService.createAutocomplete());
 		return "borrow/ReturnBookForm";
 
@@ -95,27 +96,28 @@ public class BorrowController {
 	@RequestMapping(value = "/return/{idmember}", method = RequestMethod.GET)
 	public @ResponseBody String showBorrowedBooks(
 			@PathVariable("idmember") long idMember) {
-		String borrowsbymember = borrowService
-				.findBorrowByIdMember(idMember);
-		//System.out.println(borrowsbymember);
-		//Borrow book = borrowsbymember.get(0);
-		//System.out.println(book.getBook());
-		//System.out.println(borrowsbymember.get(0).getBook());
-		
+		String borrowsbymember = borrowService.findBorrowByIdMember(idMember);
+		// System.out.println(borrowsbymember);
+		// Borrow book = borrowsbymember.get(0);
+		// System.out.println(book.getBook());
+		// System.out.println(borrowsbymember.get(0).getBook());
+
 		// A supprimer
-		/*borrowsbymember.add(new Borrow(
-				new Book(1, "1234", "Livre1", (float) 5), new Member("Moi",
-						"Moi", "M", new Date())));
+		/*
+		 * borrowsbymember.add(new Borrow( new Book(1, "1234", "Livre1", (float)
+		 * 5), new Member("Moi", "Moi", "M", new Date())));
 		 */
-		/*GsonBuilder b = new GsonBuilder();
-		b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
-		Gson gson = b.create();*/
-		//Gson gson = new Gson();
-		//return gson.toJson(borrowsbymember);
+		/*
+		 * GsonBuilder b = new GsonBuilder();
+		 * b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY); Gson
+		 * gson = b.create();
+		 */
+		// Gson gson = new Gson();
+		// return gson.toJson(borrowsbymember);
 		return borrowsbymember;
 	}
 
-	@RequestMapping(value = "/return/{idmember}", method = RequestMethod.POST)
+	@RequestMapping(value = "/return", method = RequestMethod.POST)
 	public String updateBorrows() {
 
 		return "redirect:/return";

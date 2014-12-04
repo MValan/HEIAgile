@@ -13,13 +13,15 @@ public class Borrow {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idBorrow;
-	
+
+	private boolean returned;
+
 	@ManyToOne
-    @JoinColumn(name = "idBook")
+	@JoinColumn(name = "idBook")
 	private Book book;
 
 	@ManyToOne
-    @JoinColumn(name = "idMember")
+	@JoinColumn(name = "idMember")
 	private Member member;
 
 	public Borrow(Book book, Member member) {
@@ -39,7 +41,7 @@ public class Borrow {
 	public void setIdBorrow(long idBorrow) {
 		this.idBorrow = idBorrow;
 	}
-	
+
 	public Book getBook() {
 		return book;
 	}
@@ -56,4 +58,11 @@ public class Borrow {
 		this.member = member;
 	}
 
+	public boolean isReturned() {
+		return returned;
+	}
+
+	public void setReturned(boolean returned) {
+		this.returned = returned;
+	}
 }

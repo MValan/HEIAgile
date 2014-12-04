@@ -7,7 +7,10 @@ import hei.agile.service.BookService;
 import hei.agile.service.BorrowService;
 import hei.agile.service.MemberService;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -54,6 +57,7 @@ public class BorrowController {
 		long idBook = Long.parseLong(request.getParameter("idBook"));
 		long idMember = Long.parseLong(request.getParameter("idMember"));
 
+		String dateBorrowEnd = request.getParameter("dateBorrowEnd");
 		List<String> errors = new ArrayList<>();
 
 		Book book = bookService.findOne(idBook);
@@ -72,12 +76,17 @@ public class BorrowController {
 		model.addAttribute("errors", errors);
 
 		if (errors.isEmpty()) {
-			Borrow borrow = new Borrow(book, member);
-			borrowService.saveBorrow(borrow);
-			logger.info("Ajout d'un emprunt : {} par: {} {}",
-					(borrow.getBook()).getTitleBook(),
-					(borrow.getMember()).getFirstNameMember(),
-					(borrow.getMember()).getLastNameMember());
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			
+			try {
+				Date date = formatter.parse(dateBorrowEnd);
+				Borrow borrow = new Borrow(book, member, date);
+				borrowService.saveBorrow(borrow);
+				logger.info("Ajout d'un emprunt : {} par: {} {}", (borrow.getBook()).getTitleBook(), (borrow.getMember()).getFirstNameMember(), (borrow.getMember()).getLastNameMember());
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 			return "redirect:/borrow";
 		} else {
 			return "borrow/BorrowBookForm";

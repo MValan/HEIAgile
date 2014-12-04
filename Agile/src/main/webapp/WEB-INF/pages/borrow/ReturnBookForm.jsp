@@ -87,7 +87,7 @@
 						{
 							toappend+="<tr><td>"+data[i].book.titleBook+"</td>";
 							toappend+="<td>"+data[i].book.isbn+"</td>";
-							toappend+="<td>A ajouter</td>";
+							toappend+="<td>"+data[i].dateBorrowEnd+"</td>";
 							toappend+='<td><input type="checkbox" name="returned" value="'+data[i].idBorrow+'" /></td>';
 							toappend+="</tr>";
 							

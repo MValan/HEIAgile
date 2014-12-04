@@ -29,21 +29,9 @@
 				</div>
 			</form:form>
 		
-			<form:form>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Titre</th>
-							<th>ISBN</th>
-							<th>Date d'emprunt</th>
-							<th>Retour</th>
-						</tr>
-					</thead>
-					<tbody id="borrowed">					
-					</tbody>
-					
-				</table>
-			</form:form>
+			<div id="tofillwithborrowlist">
+			</div>
+			
 			<script>
 			var everythingValid = false;
 			var titleValid = false;
@@ -75,18 +63,42 @@
 						}
 					}
 				}
-				
-				function getBorrowTable(idMember){
-					$.getJSON(idMember)
-					.done(function(data){
-							console.log(data);
-							$("#borrowed").empty();
-							for(i=0;i<data.length;i++)
-							{
-								$("#borrowed").append("<tr><td>"+data[i].book.titleBook+"</td><td>"+data[i].book.isbn+"</td><td>A ajouter</td><td></td></tr>");
-							}
-					});
-				}
+			
+			function getBorrowTable(idMember){
+				$.getJSON( "return/"+idMember)
+				.done(function(data){
+						console.log(data);
+						console.log("Membre: "+idMember);
+						$('#tofillwithborrowlist').empty();
+						var toappend="";
+						toappend+='<form:form method="POST" id="returnchecklist" commandName="borrowreturned">';
+						toappend+='<table class="table">';
+						toappend+='<thead>';
+						toappend+='<tr>';
+						toappend+='<th>Titre</th>';
+						toappend+='<th>ISBN</th>';
+						toappend+="<th>Date d'emprunt</th>";
+						toappend+='<th>Retour</th>';
+						toappend+='</tr>';
+						toappend+='</thead>';
+						toappend+='<tbody id="borrowed">';					
+						
+						for(i=0;i<data.length;i++)
+						{
+							toappend+="<tr><td>"+data[i].book.titleBook+"</td>";
+							toappend+="<td>"+data[i].book.isbn+"</td>";
+							toappend+="<td>A ajouter</td>";
+							toappend+='<td><form:checkbox path="returned"/></td>';
+							toappend+="</tr>";
+							
+							
+						}
+						toappend+='</tbody>	';	
+						toappend+='</table>';
+						toappend+='</form:form>';
+						$('#tofillwithborrowlist').append(toappend);
+				});
+			}
 					
 			</script>
 			<div id="booksListe" style="display: none;">${books}</div>

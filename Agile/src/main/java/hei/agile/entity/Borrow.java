@@ -56,4 +56,11 @@ public class Borrow {
 		this.member = member;
 	}
 
+	public Borrow(long idBorrow, Book book, Member member) {
+		super();
+		this.idBorrow = idBorrow;
+		this.book = book;
+		this.member = member;
+	}
+
 }

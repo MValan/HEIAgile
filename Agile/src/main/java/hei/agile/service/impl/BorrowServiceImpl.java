@@ -99,7 +99,7 @@ public class BorrowServiceImpl implements BorrowService {
 
 		for (Borrow borrow : borrowDAO.findByMember_IdMember(idMember)) {
 
-			borrowsbymember.add(new Borrow(new Book(borrow.getBook()
+			borrowsbymember.add(new Borrow(borrow.getIdBorrow(),new Book(borrow.getBook()
 					.getIdBook(), borrow.getBook().getIsbn(), borrow.getBook()
 					.getTitleBook(), borrow.getBook().getPriceBook()),
 					new Member(borrow.getMember().getLastNameMember(), borrow

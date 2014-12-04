@@ -69,6 +69,7 @@
 				$.getJSON( "return/"+idMember)
 				.done(function(data){
 						console.log(data);
+						$("#borrowed").empty();
 						for(i=0;i<data.length;i++)
 						{
 							$("#borrowed").append("<tr><td>"+data[i].book.titleBook+"</td><td>"+data[i].book.isbn+"</td><td>A ajouter</td><td></td></tr>");

@@ -49,8 +49,8 @@
 				
 				<button type="submit" class="btn btn-primary" id="submit" style="display: none;">Ajouter</button>
 			</form:form>
-			<div id="emptyBooks" style="display: none;">Il n'y à aucun livre enregistré (ou disponible) en Base de Données.<br/>Veuillez d'abord en ajouter un <a href='books/books'>ici.</a></div><br/>
-			<div id="emptyMembers" style="display: none;">Il n'y à aucun membre enregistré en Base de Données.<br/>Veuillez d'abord en ajouter un <a href='members/addMember'>ici.</a></div><br/>
+			<div id="emptyBooks" style="display: none;">Il n'y à aucun livre enregistré (ou disponible) en Base de Données.<br/>Veuillez d'abord en ajouter un <a href='../books/books'>ici.</a></div><br/>
+			<div id="emptyMembers" style="display: none;">Il n'y à aucun membre enregistré en Base de Données.<br/>Veuillez d'abord en ajouter un <a href='../members/addMember'>ici.</a></div><br/>
 		</div>
 			
 		<script>

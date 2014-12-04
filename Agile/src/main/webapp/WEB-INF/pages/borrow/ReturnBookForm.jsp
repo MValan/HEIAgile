@@ -41,10 +41,10 @@
 						$("#insertBorrow").hide();
 						$("#emptyMembers").show();
 					}
-					$("#titleBook").bind("change paste keyup", function(){
+					$("#titleBook").bind("change paste keyup click", function(){
 						checkTitle($(this).val());				
 					});
-					$("#membreBorrow").bind("change paste keyup", function(){
+					$("#membreBorrow").bind("change paste keyup click", function(){
 						checkMember($(this).val());				
 					});
 				});

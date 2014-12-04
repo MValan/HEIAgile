@@ -97,30 +97,23 @@ public class BorrowController {
 	public @ResponseBody String showBorrowedBooks(
 			@PathVariable("idmember") long idMember) {
 		String borrowsbymember = borrowService.findBorrowByIdMember(idMember);
-		// System.out.println(borrowsbymember);
-		// Borrow book = borrowsbymember.get(0);
-		// System.out.println(book.getBook());
-		// System.out.println(borrowsbymember.get(0).getBook());
-
-		// A supprimer
-		/*
-		 * borrowsbymember.add(new Borrow( new Book(1, "1234", "Livre1", (float)
-		 * 5), new Member("Moi", "Moi", "M", new Date())));
-		 */
-		/*
-		 * GsonBuilder b = new GsonBuilder();
-		 * b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY); Gson
-		 * gson = b.create();
-		 */
-		// Gson gson = new Gson();
-		// return gson.toJson(borrowsbymember);
+		
 		return borrowsbymember;
 	}
 
 	@RequestMapping(value = "/return", method = RequestMethod.POST)
-	public String updateBorrows() {
-
-		return "redirect:/return";
+	public String updateBorrows(HttpServletRequest request, ModelMap model) {
+		String [] checkedReturned = request.getParameterValues("returned");
+		for (int i = 0; i < checkedReturned.length; i++) {
+			System.out.println(Long.parseLong(checkedReturned[i]));
+			borrowService.setBorrowToReturned(Long.parseLong(checkedReturned[i]));
+		}
+		
+		
+		model.addAttribute("borrow", new Borrow());
+		model.addAttribute("borrowreturned", new Borrow());
+		model.addAttribute("books", borrowService.createAutocomplete());
+		return "borrow/ReturnBookForm";
 	}
 
 }

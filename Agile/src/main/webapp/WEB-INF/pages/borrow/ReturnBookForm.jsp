@@ -88,13 +88,14 @@
 							toappend+="<tr><td>"+data[i].book.titleBook+"</td>";
 							toappend+="<td>"+data[i].book.isbn+"</td>";
 							toappend+="<td>A ajouter</td>";
-							toappend+='<td><form:checkbox path="returned"/></td>';
+							toappend+='<td><input type="checkbox" name="returned" value="'+data[i].idBorrow+'" /></td>';
 							toappend+="</tr>";
 							
 							
 						}
 						toappend+='</tbody>	';	
 						toappend+='</table>';
+						toappend+= '<button type="submit" class="btn btn-primary" id="submit">Valider</button>';
 						toappend+='</form:form>';
 						$('#tofillwithborrowlist').append(toappend);
 				});

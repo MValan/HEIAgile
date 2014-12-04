@@ -1,5 +1,6 @@
 package hei.agile.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,8 +15,6 @@ public class Borrow {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idBorrow;
 
-	private boolean returned;
-
 	@ManyToOne
 	@JoinColumn(name = "idBook")
 	private Book book;
@@ -23,6 +22,9 @@ public class Borrow {
 	@ManyToOne
 	@JoinColumn(name = "idMember")
 	private Member member;
+	
+	@Column(name="returned")
+	private boolean returned;
 
 	public Borrow(Book book, Member member) {
 		super();
@@ -72,4 +74,5 @@ public class Borrow {
 	public void setReturned(boolean returned) {
 		this.returned = returned;
 	}
+	
 }

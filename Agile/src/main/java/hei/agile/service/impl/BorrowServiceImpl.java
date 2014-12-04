@@ -109,5 +109,9 @@ public class BorrowServiceImpl implements BorrowService {
 		}
 		return gson.toJson(borrowsbymember);
 	}
+	
+	public void setBorrowToReturned(Long idBorrow){
+		borrowDAO.setBorrowToReturned(idBorrow);
+	}
 
 }

@@ -13,4 +13,6 @@ public interface BorrowService {
 	public Borrow findBorrowByIdBook(long idBook);
 
 	public String findBorrowByIdMember(long idMember);
+	
+	public void setBorrowToReturned(Long idBorrow);
 }

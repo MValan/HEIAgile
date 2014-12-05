@@ -110,18 +110,17 @@ public class BorrowController {
 		return borrowsbymember;
 	}
 
-	@RequestMapping(value = "/return", method = RequestMethod.POST)
-	public String updateBorrows(HttpServletRequest request, ModelMap model) {
+	@RequestMapping(value = "/returnBook/{idmember}", method = RequestMethod.POST)
+	public @ResponseBody String updateBorrows(HttpServletRequest request, ModelMap model, @PathVariable("idmember") long idMember) {
 		String [] checkedReturned = request.getParameterValues("returned");
-		for (int i = 0; i < checkedReturned.length; i++) {
-			borrowService.setBorrowToReturned(Long.parseLong(checkedReturned[i]));
+		if(checkedReturned.length > 0){
+			for (int i = 0; i < checkedReturned.length; i++) {
+				borrowService.setBorrowToReturned(Long.parseLong(checkedReturned[i]));
+			}
 		}
+		String borrowsbymember = borrowService.findBorrowByIdMember(idMember);
 		
-		
-		model.addAttribute("borrow", new Borrow());
-		model.addAttribute("borrowreturned", new Borrow());
-		model.addAttribute("books", borrowService.createAutocomplete());
-		return "borrow/ReturnBookForm";
+		return borrowsbymember;
 	}
 
 }

@@ -29,7 +29,7 @@ public class BookController {
     public String getForm(ModelMap model) {
 				
 
-		model.addAttribute("book234", new Book());		
+		model.addAttribute("book234", new Book());				
 		logger.debug("Création d'un ouvrage");
 		
         return "books/AddBook234";

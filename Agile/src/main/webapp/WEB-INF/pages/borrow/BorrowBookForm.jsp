@@ -44,7 +44,7 @@
 				
 				
 				<label>Date maximale de restitution :</label>
-				<input type="date" name="dateBorrow" id="dateBorrow" value="${dateRest}" disabled/><br/>
+				<form:input path="dateBorrowEnd" type="date" name="dateBorrow" id="dateBorrow" value="${dateRest}" disabled="disabled"/><br/>
 				
 				
 				<button type="submit" class="btn btn-primary" id="submit" style="display: none;">Ajouter</button>

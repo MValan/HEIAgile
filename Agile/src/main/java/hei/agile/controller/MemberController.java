@@ -35,14 +35,32 @@ public class MemberController {
 
 	@RequestMapping(value = "/addMember", method = RequestMethod.POST)
 	public String addMember(@ModelAttribute("member") Member member,
-			SessionStatus sessionStatus) {
+			SessionStatus sessionStatus, ModelMap model) {
 
-		logger.info("Ajout du membre : Nom:{} Prenom:{} Sexe:{} DateNaiss:{}",
-				member.getLastNameMember(), member.getFirstNameMember(),
-				member.getGenderMember(), member.getBirthDateMember());
-		memberService.saveMember(member);
-		sessionStatus.setComplete();
-
-		return "redirect:/members/addMember";
+		if (!memberService.memberAlreadyExist(member)) {
+			logger.info(
+					"Ajout du membre : Nom:{} Prenom:{} Sexe:{} DateNaiss:{}",
+					member.getLastNameMember(), member.getFirstNameMember(),
+					member.getGenderMember(), member.getBirthDateMember());
+			memberService.saveMember(member);
+			sessionStatus.setComplete();
+			model.addAttribute(
+					"message",
+					"Le membre " + member.getLastNameMember() + " "
+							+ member.getFirstNameMember() + " née le "
+							+ member.getBirthDateMember()
+							+ " a bien été ajouté.");
+			model.addAttribute("member", new Member());
+		} else {
+			logger.info(
+					"Le membre : Nom:{} Prenom:{} Sexe:{} DateNaiss:{} existe déjà.",
+					member.getLastNameMember(), member.getFirstNameMember(),
+					member.getGenderMember(), member.getBirthDateMember());
+			model.addAttribute(
+					"message",
+					"Le membre existe déjà.");
+		}
+		// return "redirect:/members/addMember";
+		return "members/AddMemberForm";
 	}
 }

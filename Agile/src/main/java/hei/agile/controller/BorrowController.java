@@ -6,6 +6,7 @@ import hei.agile.entity.Member;
 import hei.agile.service.BookService;
 import hei.agile.service.BorrowService;
 import hei.agile.service.MemberService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -48,7 +53,7 @@ public class BorrowController {
 	public String addBorrow(HttpServletRequest request, ModelMap model) {
 		long idBook = Long.parseLong(request.getParameter("idBook"));
 		long idMember = Long.parseLong(request.getParameter("idMember"));
-
+		String dateBorrowEnd = request.getParameter("dateBorrowEnd");
 		List<String> errors = new ArrayList<>();
 
 		Book book = bookService.findOne(idBook);
@@ -67,9 +72,16 @@ public class BorrowController {
 		model.addAttribute("errors", errors);
 
 		if (errors.isEmpty()) {
-			Borrow borrow = new Borrow(book, member);
-			borrowService.saveBorrow(borrow);
-			logger.info("Ajout d'un emprunt : {} par: {} {}", (borrow.getBook()).getTitleBook(), (borrow.getMember()).getFirstNameMember(), (borrow.getMember()).getLastNameMember());
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		 
+			try {
+				Date date = formatter.parse(dateBorrowEnd);
+				Borrow borrow = new Borrow(book, member, date);
+				borrowService.saveBorrow(borrow);
+				logger.info("Ajout d'un emprunt : {} par: {} {}", (borrow.getBook()).getTitleBook(), (borrow.getMember()).getFirstNameMember(), (borrow.getMember()).getLastNameMember());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 			return "redirect:/borrow";
 		} else {
 			return "borrow/BorrowBookForm";

@@ -23,12 +23,11 @@ public class BookController {
 	private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 	
 	@Inject
-    private BookService bookService;
+    private BookService ;
 	
 	@RequestMapping(value="/books",method = RequestMethod.GET)
     public String getForm(ModelMap model) {
 				
-		model.addAttribute("book", new Book());		
 		logger.debug("Création d'un ouvrage");
 		
         return "books/AddBook";
@@ -38,7 +37,6 @@ public class BookController {
 	public String addBook(@ModelAttribute("book") Book book,
 			SessionStatus sessionStatus){
 		logger.info("Ajout de l'ouvrage : ISBN :{} Titre :{} Prix d'achat:{}",book.getIsbn(),book.getTitleBook(),book.getPriceBook());
-		bookService.saveBook(book);
 		sessionStatus.setComplete();
 		
 		return "redirect:/books/books";	

@@ -23,20 +23,22 @@ public class BookController {
 	private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 	
 	@Inject
-    private BookService ;
+    private BookService bookService;
 	
 	@RequestMapping(value="/books",method = RequestMethod.GET)
     public String getForm(ModelMap model) {
 				
+
+		model.addAttribute("book234", new Book());		
 		logger.debug("Création d'un ouvrage");
 		
-        return "books/AddBook";
+        return "books/AddBook234";
     }
 	
 	@RequestMapping(value="/books", method = RequestMethod.POST)
 	public String addBook(@ModelAttribute("book") Book book,
 			SessionStatus sessionStatus){
-		logger.info("Ajout de l'ouvrage : ISBN :{} Titre :{} Prix d'achat:{}",book.getIsbn(),book.getTitleBook(),book.getPriceBook());
+		logger.info("Ajout de l'ouvrage : ISBN234 :{} Titre :{} Prix d'achat:{}",book.getIsbn(),book.getTitleBook(),book.getPriceBook());
 		sessionStatus.setComplete();
 		
 		return "redirect:/books/books";	

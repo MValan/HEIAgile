@@ -39,7 +39,7 @@ public class BookController {
 	public String addBook(@ModelAttribute("book") Book book,
 			SessionStatus sessionStatus){
 		logger.info("Ajout de l'ouvrage : ISBN234 :{} Titre :{} Prix d'achat:{}",book.getIsbn(),book.getTitleBook(),book.getPriceBook());
-		sessionStatus.setComplete();
+		sessionStatus.setComplete234();
 		
 		return "redirect:/books/books";	
 	}

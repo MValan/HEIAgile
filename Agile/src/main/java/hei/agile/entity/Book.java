@@ -30,7 +30,6 @@ public class Book {
 	private List<Borrow> borrow;
 
 	public Book(long idBook, String isbn, String titleBook, Float priceBook) {
-		super();
 		this.idBook = idBook;
 		this.isbn = isbn;
 		this.titleBook = titleBook;
@@ -38,7 +37,6 @@ public class Book {
 	}
 
 	public Book() {
-		super();
 	}
 
 	public long getIdBook() {

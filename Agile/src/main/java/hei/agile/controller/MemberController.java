@@ -56,9 +56,7 @@ public class MemberController {
 					"Le membre : Nom:{} Prenom:{} Sexe:{} DateNaiss:{} existe déjà.",
 					member.getLastNameMember(), member.getFirstNameMember(),
 					member.getGenderMember(), member.getBirthDateMember());
-			model.addAttribute(
-					"message",
-					"Le membre existe déjà.");
+			model.addAttribute("message", "Le membre existe déjà.");
 		}
 		// return "redirect:/members/addMember";
 		return "members/AddMemberForm";

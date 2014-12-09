@@ -1,59 +1,80 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <html>
-	<head>
-		<meta charset="utf-8">
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
-        <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-        <link rel="stylesheet" href="css/borrow/borrowBookForm.css">
-	    <!-- <script type="text/javascript" src="js/borrow/borrowBookForm.js"></script> -->
-	</head>
-	
-	<body>
-		<div>
-			<h1>Ajouter un emprunt</h1>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="css/borrow/borrowBookForm.css">
+<!-- <script type="text/javascript" src="js/borrow/borrowBookForm.js"></script> -->
+</head>
+
+<body>
+	<div>
+		<h1>Ajouter un emprunt</h1>
+
+<h3>${message}</h3>
+
+		<c:if test="TRUE">
+			${availableBooks}
+			</c:if>
+
+		<form:form method="POST" id="insertBorrow" commandName="borrow"
+			class="form-horizontal">
+
 			
-			
-			<form:form method="POST" id="insertBorrow" commandName="borrow" class="form-horizontal">
 
-				<c:choose>
-					<c:when test="${not empty  errors}">
-						<div class="error">
-							<c:forEach items="${errors}" var="err">
-								${err}
-								<br/>
-							</c:forEach>
-						</div>
-					</c:when>
-				</c:choose>
+			<label>Titre de l'ouvrage* :</label>
+			<form:input path="book" class="form-control" type="text"
+				name="titleBook" id="titleBook" placeholder="Titre"
+				onPropertyChange="checkTitle(this.val())" />
+			<div class="message-erreur"></div>
+			<br />
+			<input type="text" name="idBook" id="idBook" style="display: none;" />
 
 
-				<label>Titre de l'ouvrage* :</label>
-				<form:input path="book" class="form-control" type="text" name="titleBook" id="titleBook" placeholder="Titre" onPropertyChange="checkTitle(this.val())"/>
-				<div class="message-erreur"></div><br/>
-				<input type="text" name="idBook" id="idBook" style="display:none;"/>
-				
-				
-				
-				<label>Membre* :</label>
-				<form:input path="member" class="form-control" type="text" name="membreBorrow" id="membreBorrow" placeholder="Nom_Prénom_Date de naissance"/>
-				<div class="message-erreur"></div><br/>
-				<input type="text" name="idMember" id="idMember" style="display:none;"/>
-				
-				
-				
-				<label>Date maximale de restitution :</label>
-				<form:input path="dateBorrowEnd" type="date" name="dateBorrow" id="dateBorrow" value="${dateRest}" disabled="disabled"/><br/>
-				
-				
-				<button type="submit" class="btn btn-primary" id="submit" style="display: none;">Ajouter</button>
-			</form:form>
-			<div id="emptyBooks" style="display: none;">Il n'y à aucun livre enregistré (ou disponible) en Base de Données.<br/>Veuillez d'abord en ajouter un <a href='books/books'>ici.</a></div><br/>
-			<div id="emptyMembers" style="display: none;">Il n'y à aucun membre enregistré en Base de Données.<br/>Veuillez d'abord en ajouter un <a href='members/addMember'>ici.</a></div><br/>
+
+			<label>Membre* :</label>
+			<form:input path="member" class="form-control" type="text"
+				name="membreBorrow" id="membreBorrow"
+				placeholder="Nom_Prénom_Date de naissance" />
+			<div class="message-erreur"></div>
+			<br />
+			<input type="text" name="idMember" id="idMember"
+				style="display: none;" />
+
+
+
+			<label>Date maximale de restitution :</label>
+			<form:input path="dateBorrowEnd" type="date" name="dateBorrow"
+				id="dateBorrow" value="${dateRest}" disabled="disabled" />
+			<br />
+
+
+			<button type="submit" class="btn btn-primary" id="submit"
+				style="display: none;">Ajouter</button>
+		</form:form>
+		<div id="emptyBooks" style="display: none;">
+			Il n'y à aucun livre enregistré (ou disponible) en Base de Données.<br />Veuillez
+			d'abord en ajouter un <a href='books/books'>ici.</a>
 		</div>
-			
-		<script>
+		<br />
+		<div id="emptyMembers" style="display: none;">
+			Il n'y à aucun membre enregistré en Base de Données.<br />Veuillez
+			d'abord en ajouter un <a href='members/addMember'>ici.</a>
+		</div>
+		<br />
+	</div>
+
+
+
+	<script>
 		var everythingValid = false;
 		var titleValid = false;
 		var memberValid = false;
@@ -108,6 +129,6 @@
 			}
 				
 		</script>
-		<div id="booksListe" style="display: none;">${books}</div>
-	</body>
+	<div id="booksListe" style="display: none;">${books}</div>
+</body>
 </html>

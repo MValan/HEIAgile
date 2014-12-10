@@ -71,7 +71,6 @@ public class BorrowController {
 		}
 
 		model.addAttribute("errors", errors);
-
 		if (errors.isEmpty()) {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -79,11 +78,14 @@ public class BorrowController {
 				Date date = formatter.parse(dateBorrowEnd);
 				Borrow borrow = new Borrow(book, member, date);
 				borrowService.saveBorrow(borrow);
-				model.addAttribute("message",
+				model.addAttribute(
+						"message",
 						"Un nouvel emprunt vient d'être réalisé \n Livre emprunté : "
 								+ (borrow.getBook().getTitleBook()) + "\t par "
 								+ (borrow.getMember()).getFirstNameMember()
+								+ " "
 								+ (borrow.getMember()).getLastNameMember());
+				model.addAttribute("borrow", new Borrow());
 				logger.info("Ajout d'un emprunt : {} par: {} {}",
 						(borrow.getBook()).getTitleBook(),
 						(borrow.getMember()).getFirstNameMember(),
@@ -91,7 +93,7 @@ public class BorrowController {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			return "redirect:/borrow";
+			return "borrow/BorrowBookForm";
 		} else {
 			return "borrow/BorrowBookForm";
 		}

@@ -42,7 +42,7 @@ public class BookController {
 				book.getIsbn(), book.getTitleBook(), book.getPriceBook());
 		bookService.saveBook(book);
 		sessionStatus.setComplete();
-		model.addAttribute("message", "L'ouvrage " + book.getTitleBook()
+		model.addAttribute("confirmationAddBook", "L'ouvrage " + book.getTitleBook()
 				+ " a bien été ajouté.");
 		model.addAttribute("book", new Book());
 		return "books/AddBook";

@@ -37,7 +37,7 @@
 
 <body>
 	<div class="container">
-		<h3>${message}</h3>
+		<h3>${confirmationAddBook}</h3>
 		<h1>Ajouter un Ouvrage</h1>
 		<form id="isbnForm" class="form-horizontal">
 			<div id="isbn-form" class="form-group">

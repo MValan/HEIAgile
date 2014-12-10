@@ -19,7 +19,7 @@
 	<div>
 		<h1>Ajouter un emprunt</h1>
 
-<h3>${message}</h3>
+		<h3>${message}</h3>
 
 		<c:if test="TRUE">
 			${availableBooks}
@@ -28,7 +28,7 @@
 		<form:form method="POST" id="insertBorrow" commandName="borrow"
 			class="form-horizontal">
 
-			
+
 
 			<label>Titre de l'ouvrage* :</label>
 			<form:input path="book" class="form-control" type="text"
@@ -78,57 +78,58 @@
 		var everythingValid = false;
 		var titleValid = false;
 		var memberValid = false;
-			$(document).ready(function(){
-				if(availableBooks.length === 0){
-					$("#insertBorrow").hide();
-					$("#emptyBooks").show();
-				}
-				if(availableMembers.length === 0){
-					$("#insertBorrow").hide();
-					$("#emptyMembers").show();
-				}
-				$("#titleBook").bind("change paste keyup", function(){
-					checkTitle($(this).val());				
-				});
-				$("#membreBorrow").bind("change paste keyup", function(){
-					checkMember($(this).val());				
-				});
+		$(document).ready(function() {
+			if (availableBooks.length === 0) {
+				$("#insertBorrow").hide();
+				$("#emptyBooks").show();
+			}
+			if (availableMembers.length === 0) {
+				$("#insertBorrow").hide();
+				$("#emptyMembers").show();
+			}
+			$("#titleBook").bind("change paste keyup", function() {
+				checkTitle($(this).val());
 			});
-			
-			function checkTitle(value){
-				for (var int = 0; int < availableBooks.length; int++) {
-					if(value == availableBooks[int].label){
-						$("#titleBook").next(".message-erreur").hide();
-						titleValid = true;
-						$("#idBook").val(availableBooks[int].value);
-						if(memberValid){
-							$("#submit").show();
-						}
-						return false;
-					}else{
-						$("#titleBook").next(".message-erreur").show().text("Veuillez saisir un titre d'ouvrage valide");
-						$("#submit").hide();
+			$("#membreBorrow").bind("change paste keyup", function() {
+				checkMember($(this).val());
+			});
+		});
+
+		function checkTitle(value) {
+			for (var int = 0; int < availableBooks.length; int++) {
+				if (value == availableBooks[int].label) {
+					$("#titleBook").next(".message-erreur").hide();
+					titleValid = true;
+					$("#idBook").val(availableBooks[int].value);
+					if (memberValid) {
+						$("#submit").show();
 					}
+					return false;
+				} else {
+					$("#titleBook").next(".message-erreur").show().text(
+							"Veuillez saisir un titre d'ouvrage valide");
+					$("#submit").hide();
 				}
 			}
-			function checkMember(value){
-				for (var int = 0; int < availableMembers.length; int++) {
-					if(value == availableMembers[int].label){
-						$("#membreBorrow").next(".message-erreur").hide();
-						memberValid = true;
-						$("#idMember").val(availableMembers[int].value);
-						if(titleValid){
-							$("#submit").show();
-						}
-						return false;
-					}else{
-						$("#membreBorrow").next(".message-erreur").show().text("Veuillez renseigner un membre valide");
-						$("#submit").hide();
+		}
+		function checkMember(value) {
+			for (var int = 0; int < availableMembers.length; int++) {
+				if (value == availableMembers[int].label) {
+					$("#membreBorrow").next(".message-erreur").hide();
+					memberValid = true;
+					$("#idMember").val(availableMembers[int].value);
+					if (titleValid) {
+						$("#submit").show();
 					}
+					return false;
+				} else {
+					$("#membreBorrow").next(".message-erreur").show().text(
+							"Veuillez renseigner un membre valide");
+					$("#submit").hide();
 				}
 			}
-				
-		</script>
+		}
+	</script>
 	<div id="booksListe" style="display: none;">${books}</div>
 </body>
 </html>

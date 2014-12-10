@@ -9,6 +9,7 @@
 		<div>
 			<h3>${message}</h3>
 			<h1>Nouveau client</h1>
+			<h3>${errors}</h3>
 	
 			<form:form method="POST" commandName="member" class="form-horizontal">
 			  <div>

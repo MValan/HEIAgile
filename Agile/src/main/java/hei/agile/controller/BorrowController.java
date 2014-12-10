@@ -80,7 +80,7 @@ public class BorrowController {
 				borrowService.saveBorrow(borrow);
 				model.addAttribute(
 						"message",
-						"Un nouvel emprunt vient d'être réalisé \n Livre emprunté : "
+						"Un nouvel emprunt vient d'être réalisé. \n Livre emprunté : "
 								+ (borrow.getBook().getTitleBook()) + "\t par "
 								+ (borrow.getMember()).getFirstNameMember()
 								+ " "

@@ -19,6 +19,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
+import com.google.gson.Gson;
+
 @Named
 @Transactional
 public class BorrowServiceImpl implements BorrowService {
@@ -91,6 +93,10 @@ public class BorrowServiceImpl implements BorrowService {
 	public void saveBorrow(Borrow borrow) {
 		borrowDAO.save(borrow);
 	}
+	
+	public String findBorrowByIdMember(long idMember) {
+		Gson gson = new Gson();
+		List<Borrow> borrowsbymember = new ArrayList<Borrow>();
 
 		for (Borrow borrow : borrowDAO.findByMember_IdMember(idMember)) {
 			if(!borrow.isReturned()){

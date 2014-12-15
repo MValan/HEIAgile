@@ -21,8 +21,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @Named
@@ -54,6 +56,7 @@ public class BorrowController {
 	public String addBorrow(HttpServletRequest request, ModelMap model) {
 		long idBook = Long.parseLong(request.getParameter("idBook"));
 		long idMember = Long.parseLong(request.getParameter("idMember"));
+
 		String dateBorrowEnd = request.getParameter("dateBorrowEnd");
 		List<String> errors = new ArrayList<>();
 
@@ -98,5 +101,35 @@ public class BorrowController {
 			return "borrow/BorrowBookForm";
 		}
 
+	}
+	
+	@RequestMapping(value = "/return", method = RequestMethod.GET)
+	public String getReturnBookForm(ModelMap model) {
+		model.addAttribute("borrow", new Borrow());
+		model.addAttribute("borrowreturned", new Borrow());
+		model.addAttribute("books", borrowService.createAutocomplete());
+		return "borrow/ReturnBookForm";
+
+	}
+
+	@RequestMapping(value = "/return/{idmember}", method = RequestMethod.GET)
+	public @ResponseBody String showBorrowedBooks(
+			@PathVariable("idmember") long idMember) {
+		String borrowsbymember = borrowService.findBorrowByIdMember(idMember);
+		
+		return borrowsbymember;
+	}
+
+	@RequestMapping(value = "/returnBook/{idmember}", method = RequestMethod.POST)
+	public @ResponseBody String updateBorrows(HttpServletRequest request, ModelMap model, @PathVariable("idmember") long idMember) {
+		String [] checkedReturned = request.getParameterValues("returned");
+		if(checkedReturned.length > 0){
+			for (int i = 0; i < checkedReturned.length; i++) {
+				borrowService.setBorrowToReturned(Long.parseLong(checkedReturned[i]));
+			}
+		}
+		String borrowsbymember = borrowService.findBorrowByIdMember(idMember);
+		
+		return borrowsbymember;
 	}
 }

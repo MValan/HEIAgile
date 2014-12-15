@@ -10,6 +10,7 @@ import hei.agile.service.BorrowService;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -91,4 +92,16 @@ public class BorrowServiceImpl implements BorrowService {
 		borrowDAO.save(borrow);
 	}
 
+		for (Borrow borrow : borrowDAO.findByMember_IdMember(idMember)) {
+			if(!borrow.isReturned()){
+				borrowsbymember.add(new Borrow(borrow.getIdBorrow(),new Book(borrow.getBook().getIdBook(), borrow.getBook().getIsbn(), borrow.getBook().getTitleBook(), borrow.getBook().getPriceBook()), new Member(borrow.getMember().getLastNameMember(), borrow.getMember().getFirstNameMember(), borrow.getMember().getGenderMember(), borrow.getMember().getBirthDateMember()), borrow.getDateBorrowEnd()));
+			}
+		}
+		return gson.toJson(borrowsbymember);
+	}
+	
+	public void setBorrowToReturned(Long idBorrow){
+		borrowDAO.setBorrowToReturned(idBorrow);
+	}
+	
 }

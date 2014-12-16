@@ -93,7 +93,7 @@ public class MemberController {
 						member.getLastNameMember(),
 						member.getFirstNameMember(), member.getGenderMember(),
 						member.getBirthDateMember());
-				model.addAttribute("message", "Le membre existe déjà.");
+				model.addAttribute("errors", "Le membre existe déjà.");
 			}
 		} else {
 			model.addAttribute("errors", errors);

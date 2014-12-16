@@ -34,12 +34,12 @@
 
     <div id="emptyBooks" class="alert alert-warning" style="display: none;">
         Il n'y a aucun livre enregistré (ou disponible) en Base de Données.<strong> Veuillez
-        d'abord en ajouter un <a href='books/books'>ici.</a> </strong>
+        d'abord en ajouter un <a href='../books/books'>ici.</a> </strong>
     </div>
 
     <div id="emptyMembers" class="alert alert-warning" style="display: none;">
         Il n'y a aucun membre enregistré en Base de Données.<strong> Veuillez
-        d'abord en ajouter un <a href='members/addMember'>ici.</a></strong>
+        d'abord en ajouter un <a href='../members/addMember'>ici.</a></strong>
     </div>
 
     <br>

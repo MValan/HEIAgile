@@ -23,5 +23,6 @@
 	  <url-pattern>/members/*</url-pattern>
 	  <url-pattern>/borrow/*</url-pattern>
 	  <url-pattern>/books/*</url-pattern>
+	  <url-pattern>/accueil</url-pattern>
 	</servlet-mapping>
 </web-app>

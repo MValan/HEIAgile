@@ -32,7 +32,7 @@ public class BookController {
 		model.addAttribute("book", new Book());
 		logger.debug("Création d'un ouvrage");
 
-		return "books/AddBook";
+		return "books/AddBookForm";
 	}
 
 	@RequestMapping(value = "/books", method = RequestMethod.POST)
@@ -45,7 +45,6 @@ public class BookController {
 		model.addAttribute("confirmationAddBook", "L'ouvrage " + book.getTitleBook()
 				+ " a bien été ajouté.");
 		model.addAttribute("book", new Book());
-		return "books/AddBook";
-		// return "redirect:/books/books";
+		return "books/AddBookForm";
 	}
 }

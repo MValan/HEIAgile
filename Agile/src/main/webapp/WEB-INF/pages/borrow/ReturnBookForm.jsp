@@ -14,10 +14,12 @@
 	<body>
 		<div class="container">
 			<h1>Restitution d'Ouvrage</h1>
+			<br>
+			<br>
 			<form:form method="POST" id="insertBorrow" commandName="borrow" class="form-horizontal">
 				<div class="form-group">
 					<div class="row">
-						<label class="col-sm-3 control-label">Membre* :</label>
+						<label class="col-sm-3 control-label" for="membreBorrow">Membre * :</label>
 						<div class="col-sm-5">
 							<form:input path="member" class="form-control" type="text" name="membreBorrow" id="membreBorrow" placeholder="Nom_Prénom_Date de naissance"/>
 						</div>
@@ -28,10 +30,11 @@
 					</div>
 				</div>
 			</form:form>
-		
+
+			<div id="returnMessage" style="margin-top: 10px;"></div>
+
 			<div id="tofillwithborrowlist">
 			</div>
-			<div id="returnMessage" style="margin-top: 10px;"></div>
 			<script>
 			var everythingValid = false;
 			var titleValid = false;
@@ -124,7 +127,7 @@
 					$("#returnMessage").html('<div class="alert alert-warning" role="alert"><strong>Attention!</strong> Cet utilisateur n\'a aucun emprunt en cours.</div>');
 				}
 				
-			};
+			}
 					
 			</script>
 			<div id="booksListe" style="display: none;">${books}</div>

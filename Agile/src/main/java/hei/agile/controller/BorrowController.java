@@ -54,6 +54,7 @@ public class BorrowController {
 
 	@RequestMapping(value = "/borrow", method = RequestMethod.POST)
 	public String addBorrow(HttpServletRequest request, ModelMap model) {
+
 		long idBook = Long.parseLong(request.getParameter("idBook"));
 		long idMember = Long.parseLong(request.getParameter("idMember"));
 
@@ -73,7 +74,9 @@ public class BorrowController {
 			errors.add("Membre introuvable");
 		}
 
-		model.addAttribute("errors", errors);
+		logger.info("Il y a des erreurs");
+
+				model.addAttribute("errors", errors);
 		if (errors.isEmpty()) {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -93,6 +96,12 @@ public class BorrowController {
 						(borrow.getBook()).getTitleBook(),
 						(borrow.getMember()).getFirstNameMember(),
 						(borrow.getMember()).getLastNameMember());
+
+				model.addAttribute("borrow", new Borrow());
+				model.addAttribute("books", borrowService.createAutocomplete());
+				model.addAttribute("dateRest", borrowService.getBorrowDate());
+
+				logger.debug("On fait de l'autocomplete YOLOWW");
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}

@@ -32,7 +32,7 @@ public class MemberController {
 	@Inject
 	private MemberService memberService;
 
-	@RequestMapping(value = "/addMember", method = RequestMethod.GET)
+	@RequestMapping(value = "/members", method = RequestMethod.GET)
 	public String getForm(ModelMap model) {
 
 		model.addAttribute("member", new Member());
@@ -41,7 +41,7 @@ public class MemberController {
 		return "members/AddMemberForm";
 	}
 
-	@RequestMapping(value = "/addMember", method = RequestMethod.POST)
+	@RequestMapping(value = "/members", method = RequestMethod.POST)
 	public String addMember(@ModelAttribute("member") Member member,
 			SessionStatus sessionStatus, ModelMap model) {
 
@@ -51,6 +51,7 @@ public class MemberController {
 			logger.info("Le prénom n'est pas renseigné");
 			errors.add("Le prénom n'est pas renseigné");
 		}
+
 		/*
 		SimpleDateFormat FormattedDATE = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar c = Calendar.getInstance();

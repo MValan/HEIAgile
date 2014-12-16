@@ -1,52 +1,83 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	
-	<body>
-		<div>
-			<h3>${message}</h3>
-			<h1>Nouveau client</h1>
-			<h3>${errors}</h3>
-	
-			<form:form method="POST" commandName="member" class="form-horizontal">
-			  <div>
-			    <label for="lastNameMember">Nom</label>
-			    <div>
-			    	<form:input path="lastNameMember" placeholder="Nom" pattern="[A-Za-z '-éèïàçëê]{2,50}"/>
-			    </div>
-			  </div>
-			  
-			  <div>
-			    <label for="firstNameMember">Prénom</label>
-			    <div>
-			      <form:input path="firstNameMember" placeholder="Prénom" pattern="[A-Za-z '-éèïàçëê]{2,50}"/>
-			    </div>
-			  </div>
-			  
-			  <div>
-			    <label for="genderMember">Sexe</label>
-			    <div>
-			      <form:radiobutton path="genderMember" value="M"/>Masculin
-			      <form:radiobutton path="genderMember" value="F"/>Féminin
-			    </div>
-			  </div>
-			  
-			  <div>
-			    <label for="birthDateMember">Date de naissance</label>
-			    <div class="col-lg-4">
-			      <form:input path="birthDateMember" placeholder="AAAA/MM/JJ" pattern="(19|20)\d\d[/](0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])"/>
-			    </div>
-			  </div>
-			  
-			  <div>
-			    <div>
-			      <button type="submit">Enregistrer</button>
-			    </div>
-			  </div>
-			</form:form>	
-		</div>	
-	</body>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+</head>
+
+<body>
+<div class="container">
+    <h1>Ajouter un client</h1>
+    <br>
+    <br>
+
+    <c:if test="${not empty message}">
+        <div class="alert alert-success" role="alert"><strong>Bravo!</strong> ${message}</div>
+    </c:if>
+    <c:if test="${not empty errors}">
+        <div class="alert alert-danger" role="alert"><strong>Mince !</strong>
+            <c:forEach var="err" items="${errors}">
+                ${err}
+            </c:forEach>
+        </div>
+    </c:if>
+
+    <br>
+    <form:form method="POST" commandName="member" class="form-horizontal">
+        <div class="row">
+            <label class="col-sm-3 control-label" for="lastNameMember">Nom * : </label>
+
+            <div class="col-sm-5">
+                <form:input path="lastNameMember" class="form-control" placeholder="Nom"
+                            pattern="[A-Za-z '-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]{2,50}" required="true"/>
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+
+            <label class="col-sm-3 control-label" for="firstNameMember">PrÃ©nom * : </label>
+
+            <div class="col-sm-5">
+                <form:input path="firstNameMember" class="form-control" placeholder="PrÃ©nom"
+                            pattern="[A-Za-z '-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]{2,50}" required="true"/>
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+
+            <label class="col-sm-3 control-label" for="genderMember1">Sexe * : </label>
+
+            <div class="col-sm-5">
+                <label class="radio-inline">
+                    <form:radiobutton path="genderMember" value="M" required="true"/> Masculin</label>
+                <label class="radio-inline">
+                    <form:radiobutton path="genderMember" value="F" required="true"/> FÃ©minin</label>
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <label class="col-sm-3 control-label" for="birthDateMember">Date de naissance * :</label>
+
+            <div class="col-sm-5">
+                <form:input placeholder="MM/JJ/AAAA" path="birthDateMember" class="form-control"
+                            required="true"/>
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-md-3 col-md-offset-3">
+                <button type="submit" class="btn btn-primary" id="submit">Ajouter</button>
+            </div>
+        </div>
+    </form:form>
+</div>
+</body>
 </html>

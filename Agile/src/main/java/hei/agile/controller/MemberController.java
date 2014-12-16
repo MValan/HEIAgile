@@ -81,10 +81,14 @@ public class MemberController {
 						member.getBirthDateMember());
 				memberService.saveMember(member);
 				sessionStatus.setComplete();
+				
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				String formattedDate = formatter.format(member.getBirthDateMember()); 
+				
 				model.addAttribute("message",
 						"Le membre " + member.getLastNameMember() + " "
 								+ member.getFirstNameMember() + " née le "
-								+ member.getBirthDateMember()
+								+ formattedDate
 								+ " a bien été ajouté.");
 				model.addAttribute("member", new Member());
 			} else {

@@ -2,12 +2,16 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 </head>
+
+<fmt:formatDate value="${member.birthDateMember}" var="dateString" pattern="yyyy/MM/dd" />
 
 <body>
 <div class="container">
@@ -66,8 +70,8 @@
             <label class="col-sm-3 control-label" for="birthDateMember">Date de naissance * :</label>
 
             <div class="col-sm-5">
-                <form:input placeholder="MM/JJ/AAAA" path="birthDateMember" class="form-control"
-                            required="true"/>
+                <form:input placeholder="AAAA/MM/JJ" path="birthDateMember" class="form-control"
+                            required="true" value="${dateString}" pattern="[0-9]{4}/[0-9]{2}/[0-9]{2}"/>
             </div>
         </div>
         <br>

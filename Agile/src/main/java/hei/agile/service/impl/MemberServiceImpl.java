@@ -12,8 +12,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
-import org.junit.Assert;
-import org.junit.Test;
 
 @Named
 @Transactional
@@ -35,18 +33,5 @@ public class MemberServiceImpl implements MemberService {
 		return members;
 	}
 	
-	@Test
-	public void saveMember() {
-		
-		Date date = new Date(Calendar.THURSDAY);
-		Member member = new Member();
-		member.setFirstNameMember("firstNameMember");
-		member.setLastNameMember("lastNameMember");
-		member.setGenderMember("F");
-		member.setBirthDateMember(date);
-		
-		memberDAO.save(member);
-		Assert.assertNotNull(memberDAO.getOne(member.getIdMember()));
-		Assert.assertEquals(member, memberDAO.getOne(member.getIdMember()));
-	}
+
 }

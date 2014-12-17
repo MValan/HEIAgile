@@ -1,5 +1,7 @@
 package hei.agile.service;
 
+import java.util.Date;
+
 import hei.agile.entity.Borrow;
 
 public interface BorrowService {
@@ -15,4 +17,6 @@ public interface BorrowService {
 	public String findBorrowByIdMember(long idMember);
 	
 	public void setBorrowToReturned(Long idBorrow);
+	
+	public void setBorrowToExtended(Long idBorrow, Date dateBorrowEnd);
 }

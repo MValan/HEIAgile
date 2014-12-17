@@ -102,8 +102,9 @@
 					toappend+='<tr>';
 					toappend+='<th>Titre</th>';
 					toappend+='<th>ISBN</th>';
-					toappend+="<th>Date d'emprunt</th>";
+					toappend+="<th>Date de restitution</th>";
 					toappend+='<th>Retour</th>';
+					toappend+='<th>Prolongement</th>';
 					toappend+='</tr>';
 					toappend+='</thead>';
 					toappend+='<tbody id="borrowed">';					
@@ -114,7 +115,8 @@
 						toappend+="<td>"+data[i].book.isbn+"</td>";
 						toappend+="<td>"+data[i].dateBorrowEnd+"</td>";
 						toappend+='<td><input type="checkbox" name="returned" value="'+data[i].idBorrow+'" /></td>';
-						toappend+="</tr>";
+ 						toappend+='<td><input type="checkbox" name="extended" value="'+data[i].idBorrow+'" /></td>';
+ 						toappend+="</tr>";
 						
 						
 					}

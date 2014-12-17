@@ -110,4 +110,8 @@ public class BorrowServiceImpl implements BorrowService {
 		borrowDAO.setBorrowToReturned(idBorrow);
 	}
 	
+	public void setBorrowToExtended(Long idBorrow, Date dateBorrowEnd){
+		borrowDAO.setBorrowToExtended(dateBorrowEnd, idBorrow);
+	}
+	
 }

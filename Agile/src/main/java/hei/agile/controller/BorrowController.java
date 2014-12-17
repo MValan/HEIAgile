@@ -117,6 +117,7 @@ public class BorrowController {
 		model.addAttribute("borrow", new Borrow());
 		model.addAttribute("borrowreturned", new Borrow());
 		model.addAttribute("books", borrowService.createAutocomplete());
+		model.addAttribute("dateRest", borrowService.getBorrowDate());
 		return "borrow/ReturnBookForm";
 
 	}
@@ -135,6 +136,13 @@ public class BorrowController {
 		if(checkedReturned.length > 0){
 			for (int i = 0; i < checkedReturned.length; i++) {
 				borrowService.setBorrowToReturned(Long.parseLong(checkedReturned[i]));
+			}
+		}
+		String [] checkedExtended = request.getParameterValues("extended");
+		if(checkedExtended.length > 0){
+			for (int i = 0; i < checkedExtended.length; i++) {
+				logger.debug("Ca marche?");
+				borrowService.setBorrowToExtended(Long.parseLong(checkedExtended[i]), new Date());
 			}
 		}
 		String borrowsbymember = borrowService.findBorrowByIdMember(idMember);

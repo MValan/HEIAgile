@@ -2,6 +2,7 @@ package hei.agile.dao;
 
 import hei.agile.entity.Borrow;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,4 +19,7 @@ public interface BorrowDAO extends JpaRepository<Borrow, Long> {
 	@Modifying(clearAutomatically = true)
 	@Query("update Borrow b set b.returned = 1 WHERE b.idBorrow = :idBorrow")
 	public void setBorrowToReturned(@Param("idBorrow") Long idBorrow);
+	
+	@Query("update Borrow b set b.dateBorrowEnd = :dateBorrowEnd WHERE b.idBorrow = :idBorrow")
+	public void setBorrowToExtended(@Param("dateBorrowEnd") Date dateBorrowEnd, @Param("idBorrow") Long idBorrow);
 }

@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface BookDAO extends JpaRepository<Book,Long>{
 
-    @Query("SELECT b FROM Book b WHERE b.idBook NOT IN (SELECT w.book.idBook FROM Borrow w)")
+    @Query("SELECT b FROM Book b WHERE b.idBook NOT IN (SELECT w.book.idBook FROM Borrow w WHERE w.returned != 1)")
     public List<Book> findAllAvailable();
 }

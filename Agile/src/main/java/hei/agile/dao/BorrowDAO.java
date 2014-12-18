@@ -15,11 +15,12 @@ public interface BorrowDAO extends JpaRepository<Borrow, Long> {
 	public Borrow findByBook_IdBook(long idBook);
 
 	public List<Borrow> findByMember_IdMember(long idMember);
-
+	
 	@Modifying(clearAutomatically = true)
 	@Query("update Borrow b set b.returned = 1 WHERE b.idBorrow = :idBorrow")
 	public void setBorrowToReturned(@Param("idBorrow") Long idBorrow);
 	
-	@Query("update Borrow b set b.dateBorrowEnd = :dateBorrowEnd WHERE b.idBorrow = :idBorrow")
+	@Modifying(clearAutomatically = true)
+	@Query("update Borrow b set b.dateBorrowEnd = :dateBorrowEnd, b.extended = 1 WHERE b.idBorrow = :idBorrow")
 	public void setBorrowToExtended(@Param("dateBorrowEnd") Date dateBorrowEnd, @Param("idBorrow") Long idBorrow);
 }

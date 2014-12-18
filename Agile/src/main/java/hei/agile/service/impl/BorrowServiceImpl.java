@@ -85,6 +85,14 @@ public class BorrowServiceImpl implements BorrowService {
 		c.add(Calendar.DATE, 21);
 		return (FormattedDATE.format(c.getTime()));
 	}
+	
+	public Date extendBorrowDate(Date date) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.DATE, 21);
+		return (c.getTime());
+	}
+
 
 	public Borrow findBorrowByIdBook(long idBook) {
 		return borrowDAO.findByBook_IdBook(idBook);
@@ -104,6 +112,10 @@ public class BorrowServiceImpl implements BorrowService {
 			}
 		}
 		return gson.toJson(borrowsbymember);
+	}
+	
+	public Borrow findOne(long idBorrow) {
+		return borrowDAO.findOne(idBorrow);
 	}
 	
 	public void setBorrowToReturned(Long idBorrow){

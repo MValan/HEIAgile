@@ -30,6 +30,9 @@ public class Borrow {
 	
 	@Column(name="returned")
 	private boolean returned;
+	
+	@Column(name="extended")
+	private boolean extended;
 
 	
 	public Borrow(Book book, Member member, Date dateBorrowEnd) {
@@ -81,6 +84,14 @@ public class Borrow {
 
 	public void setReturned(boolean returned) {
 		this.returned = returned;
+	}
+	
+	public boolean isExtended() {
+		return extended;
+	}
+
+	public void setExtended(boolean extended) {
+		this.extended = extended;
 	}
 
 	public Date getDateBorrowEnd() {

@@ -85,6 +85,14 @@ public class BorrowServiceImpl implements BorrowService {
 		c.add(Calendar.DATE, 21);
 		return (FormattedDATE.format(c.getTime()));
 	}
+	
+	public Date extendBorrowDate(Date date) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.DATE, 21);
+		return (c.getTime());
+	}
+
 
 	public Borrow findBorrowByIdBook(long idBook) {
 		return borrowDAO.findByBook_IdBook(idBook);
@@ -100,14 +108,22 @@ public class BorrowServiceImpl implements BorrowService {
 
 		for (Borrow borrow : borrowDAO.findByMember_IdMember(idMember)) {
 			if(!borrow.isReturned()){
-				borrowsbymember.add(new Borrow(borrow.getIdBorrow(),new Book(borrow.getBook().getIdBook(), borrow.getBook().getIsbn(), borrow.getBook().getTitleBook(), borrow.getBook().getPriceBook()), new Member(borrow.getMember().getLastNameMember(), borrow.getMember().getFirstNameMember(), borrow.getMember().getGenderMember(), borrow.getMember().getBirthDateMember()), borrow.getDateBorrowEnd()));
+				borrowsbymember.add(new Borrow(borrow.getIdBorrow(),new Book(borrow.getBook().getIdBook(), borrow.getBook().getIsbn(), borrow.getBook().getTitleBook(), borrow.getBook().getPriceBook()), new Member(borrow.getMember().getLastNameMember(), borrow.getMember().getFirstNameMember(), borrow.getMember().getGenderMember(), borrow.getMember().getBirthDateMember()), borrow.getDateBorrowEnd(), borrow.isExtended()));
 			}
 		}
 		return gson.toJson(borrowsbymember);
 	}
 	
+	public Borrow findOne(long idBorrow) {
+		return borrowDAO.findOne(idBorrow);
+	}
+	
 	public void setBorrowToReturned(Long idBorrow){
 		borrowDAO.setBorrowToReturned(idBorrow);
+	}
+	
+	public void setBorrowToExtended(Long idBorrow, Date dateBorrowEnd){
+		borrowDAO.setBorrowToExtended(dateBorrowEnd, idBorrow);
 	}
 	
 }

@@ -117,6 +117,7 @@ public class BorrowController {
 		model.addAttribute("borrow", new Borrow());
 		model.addAttribute("borrowreturned", new Borrow());
 		model.addAttribute("books", borrowService.createAutocomplete());
+		model.addAttribute("dateRest", borrowService.getBorrowDate());
 		return "borrow/ReturnBookForm";
 
 	}
@@ -131,10 +132,19 @@ public class BorrowController {
 
 	@RequestMapping(value = "/returnBook/{idmember}", method = RequestMethod.POST)
 	public @ResponseBody String updateBorrows(HttpServletRequest request, ModelMap model, @PathVariable("idmember") long idMember) {
-		String [] checkedReturned = request.getParameterValues("returned");
-		if(checkedReturned.length > 0){
+		String [] checkedReturned = null;
+		checkedReturned = request.getParameterValues("returned");
+		if(checkedReturned != null){
 			for (int i = 0; i < checkedReturned.length; i++) {
 				borrowService.setBorrowToReturned(Long.parseLong(checkedReturned[i]));
+			}
+		}
+		String [] checkedExtended = null;
+		checkedExtended = request.getParameterValues("extended");
+		if(checkedExtended != null){
+			for (int i = 0; i < checkedExtended.length; i++) {
+				Borrow borrowToExtend = borrowService.findOne(Long.parseLong(checkedExtended[i]));
+				borrowService.setBorrowToExtended(Long.parseLong(checkedExtended[i]), borrowService.extendBorrowDate(borrowToExtend.getDateBorrowEnd()));
 			}
 		}
 		String borrowsbymember = borrowService.findBorrowByIdMember(idMember);

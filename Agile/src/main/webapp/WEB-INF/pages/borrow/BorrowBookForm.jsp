@@ -25,7 +25,7 @@
         <div class="alert alert-success" role="alert"><strong>Bravo!</strong> ${message}</div>
     </c:if>
     <c:if test="${not empty errors}">
-        <div class="alert alert-danger" role="alert"><strong>Merde!</strong>
+        <div class="alert alert-danger" role="alert"><strong>Zut!</strong>
             <c:forEach var="err" items="${errors}">
                 ${err}
             </c:forEach>
@@ -39,7 +39,7 @@
 
     <div id="emptyMembers" class="alert alert-warning" style="display: none;">
         Il n'y a aucun membre enregistré en Base de Données.<strong> Veuillez
-        d'abord en ajouter un <a href='../members/addMember'>ici.</a></strong>
+        d'abord en ajouter un <a href='../members/members'>ici.</a></strong>
     </div>
 
     <br>

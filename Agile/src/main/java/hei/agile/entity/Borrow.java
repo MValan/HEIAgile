@@ -50,6 +50,16 @@ public class Borrow {
 		this.dateBorrowEnd = dateBorrowEnd;
 	}
 
+	public Borrow(long idBorrow, Book book, Member member, Date dateBorrowEnd,
+			boolean extended) {
+		super();
+		this.idBorrow = idBorrow;
+		this.book = book;
+		this.member = member;
+		this.dateBorrowEnd = dateBorrowEnd;
+		this.extended = extended;
+	}
+
 	public Borrow() {
 		super();
 	}

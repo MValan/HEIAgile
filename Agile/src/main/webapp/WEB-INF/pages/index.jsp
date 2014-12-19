@@ -18,6 +18,7 @@
     	<li><a href='books/books'>Ajout livres</a></li>
     	<li><a href='borrow/borrow'>Ajout emprunts</a></li>
     	<li><a href='borrow/return'>Restitution / Gestion emprunts</a></li>
+    	<li><a href='openedDays/openedDays'>Gestion des jours d'ouverture</a></li>
     </ul>
 </div>
 </body>

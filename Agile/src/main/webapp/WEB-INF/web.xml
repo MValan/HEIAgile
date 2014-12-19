@@ -24,5 +24,6 @@
 	  <url-pattern>/borrow/*</url-pattern>
 	  <url-pattern>/books/*</url-pattern>
 	  <url-pattern>/accueil</url-pattern>
+	  <url-pattern>/openedDays/*</url-pattern>
 	</servlet-mapping>
 </web-app>

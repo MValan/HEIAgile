@@ -1,10 +1,17 @@
 package hei.agile.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import hei.agile.dao.ClosedDaysDAO;
 import hei.agile.dao.OpenedDaysDAO;
 import hei.agile.entity.Borrow;
+import hei.agile.entity.ClosedDays;
 import hei.agile.entity.OpenedDays;
+import hei.agile.service.ClosedDaysService;
 import hei.agile.service.OpenedDaysService;
 
 import javax.inject.Inject;
@@ -33,12 +40,23 @@ public class OpenedDaysController {
 	private OpenedDaysService openedDaysService;
 	
 	@Inject
+	private ClosedDaysService closedDaysService;
+	
+	@Inject
 	private OpenedDaysDAO openedDaysDAO;
+	
+	@Inject
+	private ClosedDaysDAO closedDaysDAO;
 
 	@RequestMapping(value = "/openedDays", method = RequestMethod.GET)
 	public String getForm(ModelMap model) {
 		logger.debug("Gestion des jours d'ouverture");
 		model.addAttribute("allDays", openedDaysService.generateHtmlDaysTable());
+		
+		String scriptClosedDates = openedDaysService.generateScriptClosedDays();
+		model.addAttribute("closedDates", scriptClosedDates);
+		
+		model.addAttribute("allClosedDays", openedDaysService.generateHtmlClosedDaysTable());
 		
 		return "/openedDays/OpenedDaysForm";
 
@@ -63,5 +81,35 @@ public class OpenedDaysController {
 		Gson gson = new Gson();
 		
 		return gson.toJson(allDays);
+	}
+	
+	@RequestMapping(value = "/addNewClosedDay", method = RequestMethod.POST)
+	public @ResponseBody String addNewClosedDay(HttpServletRequest request, ModelMap model) {
+		String closedDays = request.getParameter("closedDate");
+		closedDaysDAO.deleteAll();
+		//On décompose la chaine de caractère pour créer les dates
+		for (int i = 0; i < closedDays.length(); i+=12) {
+			String tempString = closedDays.substring(i, i+10);
+			System.out.println(tempString);
+			
+			DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+			Date date;
+			try {
+				date = formatter.parse(tempString);
+				closedDaysService.saveClosedDays(new ClosedDays(date));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+
+		String allClosedDays = openedDaysService.generateHtmlClosedDaysTable();
+		
+		//List<OpenedDays> allDays = openedDaysDAO.findAll();
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(allClosedDays);
 	}
 }

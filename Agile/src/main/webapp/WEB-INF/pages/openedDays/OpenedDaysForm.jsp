@@ -11,7 +11,16 @@
 	src="http://oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	
+	<script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="../js/jquery-ui-1.11.1.js"></script>
+	<script type="text/javascript" src="../js/jquery-ui.multidatespicker.js"></script>
 <title>Gestion des jours d'ouverture de la bibliothèque</title>
+<script>
+
+</script>
 </head>
 
 <body>
@@ -21,8 +30,7 @@
 		<form id="daysForm" class="form-horizontal">
 			<div class="form-group">
 				<div>
-					<label class="col-sm-3 control-label" for="input-days">Jour
-						d'ouverture :</label> <select name="input-days" id="input-days">
+					<label class="col-sm-3 control-label" for="input-days">Jour	d'ouverture :</label> <select name="input-days" id="input-days">
 						<option value="lundi" selected>Lundi</option>
 						<option value="mardi">Mardi</option>
 						<option value="mercredi">Mercredi</option>
@@ -39,6 +47,38 @@
 		</form>
 		<div id="table_ins">
 			${allDays}
+		</div>
+		
+		<form id="closedDaysForm" class="form-horizontal">
+			<div class="form-group">
+				<div>
+					<label class="col-sm-3 control-label" for="input-closedDays">Jours exceptionnels de fermeture :</label> 
+					<div class="box"  id="from--input">
+							<input type="text" id="from-input" name="closedDate">
+					</div>
+					<script>
+						$('#from-input').multiDatesPicker({
+							altField: "#datepicker",
+							firstDay: 1,
+							closeText: 'Fermer',
+							prevText: 'Précédent',
+							nextText: 'Suivant',
+							currentText: 'Aujourd\'hui',
+							monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+							monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+							dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+							dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+							dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+							weekHeader: 'Sem.'
+						});
+					</script>
+				</div>
+			</div>
+			<input type="submit" id="submitClosedDays" value="Ajouter">
+		</form>
+		<div id="forHtml">${closedDates}</div>
+		<div id="table_ins_closed">
+			${allClosedDays}
 		</div>
 	</div>
 	<script>
@@ -59,6 +99,13 @@
 			}, 'json');
 		event.preventDefault();
 	});
+	
+	$(document.body).on("click", "#submitClosedDays", function(event){	
+		$.post('addNewClosedDay', $("#closedDaysForm").serialize(), function(data){
+			$('#table_ins_closed').html(data);
+		}, 'json');
+	event.preventDefault();
+});
 	</script>
 </body>
 </html>

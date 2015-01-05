@@ -1,5 +1,7 @@
 package hei.agile.service.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +12,9 @@ import javax.transaction.Transactional;
 
 import com.google.gson.Gson;
 
+import hei.agile.dao.ClosedDaysDAO;
 import hei.agile.dao.OpenedDaysDAO;
+import hei.agile.entity.ClosedDays;
 import hei.agile.entity.OpenedDays;
 import hei.agile.service.OpenedDaysService;
 
@@ -21,6 +25,9 @@ public class OpenedDaysServiceImpl implements OpenedDaysService {
 
 	@Inject
 	private OpenedDaysDAO openedDaysDAO;
+	
+	@Inject
+	private ClosedDaysDAO closedDaysDAO;
 
 	@Override
 	public void saveOpenedDays(OpenedDays openedDay){
@@ -58,6 +65,37 @@ public class OpenedDaysServiceImpl implements OpenedDaysService {
 		
 		for (OpenedDays openedDays : allDays) {
 			html += "<tr><td>"+ openedDays.getDay() +"</td><td>"+ openedDays.getFromHour() +"</td><td>"+ openedDays.getToHour() +"</td></tr>";
+		}
+		
+		html +="</tbody></table>";
+		
+		return html;
+	}
+	
+	@Override
+	public String generateScriptClosedDays() {
+		List<ClosedDays> allClosedDays = closedDaysDAO.findAll();
+		String script = "<script>$('#from-input').multiDatesPicker({altField: '#datepicker',firstDay: 1,closeText: 'Fermer',prevText: 'Précédent',nextText: 'Suivant',currentText: 'Aujourdhui',monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],weekHeader: 'Sem.'";
+		if(!allClosedDays.isEmpty()){
+			script += ",addDates: [";
+			for (ClosedDays closedDays : allClosedDays) {
+				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+				String theDate = df.format(closedDays.getDay());
+				script += "'"+ theDate +"',";
+			}
+			script += "]";
+		}
+		script += "});</script>";
+		return script;
+	}
+	
+	@Override
+	public String generateHtmlClosedDaysTable() {
+		List<ClosedDays> allDays = closedDaysDAO.findAll();
+		String html = "<table class='table'><thead><tr><th>Jour(s) ferm&eacute;</th></tr></thead><tbody id='insideClosedHtmlTable'>";
+		
+		for (ClosedDays closedDays : allDays) {
+			html += "<tr><td>"+ closedDays.getDay() +"</td></tr>";
 		}
 		
 		html +="</tbody></table>";

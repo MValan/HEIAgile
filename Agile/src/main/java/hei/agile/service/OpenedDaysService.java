@@ -9,5 +9,9 @@ public interface OpenedDaysService {
 	public String addNewDay(String day, String from, String to);
 	
 	public String generateHtmlDaysTable();
+
+	public String generateScriptClosedDays();
+
+	public String generateHtmlClosedDaysTable();
 	
 }

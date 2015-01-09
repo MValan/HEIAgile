@@ -14,6 +14,11 @@
 </head>
 
 <body>
+
+<jsp:include page="../navbar.jsp">
+	<jsp:param name="activeTab" value="book" />
+</jsp:include>
+
 <div class="container">
 
     <h1>Ajouter un Ouvrage</h1>

@@ -14,6 +14,9 @@
 <fmt:formatDate value="${member.birthDateMember}" var="dateString" pattern="yyyy/MM/dd" />
 
 <body>
+<jsp:include page="../navbar.jsp">
+	<jsp:param name="activeTab" value="member" />
+</jsp:include>
 <div class="container">
     <h1>Ajouter un client</h1>
     <br>

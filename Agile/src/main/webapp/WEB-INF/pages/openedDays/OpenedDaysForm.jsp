@@ -24,6 +24,9 @@
 </head>
 
 <body>
+<jsp:include page="../navbar.jsp">
+	<jsp:param name="activeTab" value="opendays" />
+</jsp:include>
 	<div class="container">
 		<h1>Gestion des jours d'ouverture</h1>
 		<br> <br> <br>

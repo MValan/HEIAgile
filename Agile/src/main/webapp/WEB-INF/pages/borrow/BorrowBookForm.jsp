@@ -20,6 +20,9 @@
 </head>
 
 <body>
+<jsp:include page="../navbar.jsp">
+	<jsp:param name="activeTab" value="borrow" />
+</jsp:include>
 	<div class="container">
 		<h1>Ajouter un Emprunt</h1>
 

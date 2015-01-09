@@ -10,6 +10,11 @@
 </head>
 
 <body>
+
+<jsp:include page="navbar.jsp">
+	<jsp:param name="activeTab" value="index" />
+</jsp:include>
+
 <div class="container">
     <h1>Interface de gestion de la bibliothèque</h1>
     <br>

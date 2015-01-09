@@ -12,6 +12,9 @@
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	</head>
 	<body>
+		<jsp:include page="../navbar.jsp">
+			<jsp:param name="activeTab" value="return" />
+		</jsp:include>
 		<div class="container">
 			<h1>Restitution d'Ouvrage</h1>
 			<br>

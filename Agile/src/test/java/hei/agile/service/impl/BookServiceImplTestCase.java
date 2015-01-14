@@ -35,7 +35,7 @@ public class BookServiceImplTestCase {
 	}
 	
 	@Test
-	public void shouldSaveMember() {
+	public void shouldSaveBookr() {
 		
 		Book book = getBook1();
 		
@@ -46,7 +46,7 @@ public class BookServiceImplTestCase {
 
 	
 	@Test
-	public void shouldListAll(){
+	public void shouldFindAll(){
 		
 		List<Book> allBooks = bookService.findAll();
 		
@@ -57,12 +57,10 @@ public class BookServiceImplTestCase {
 	@Test
 	public void shouldFindOne(){
 		
-		/*Long idBook = getBook1().getIdBook();
+		Long idBook = getBook1().getIdBook();		
+		bookService.findOne(idBook);
 		
-		Book book = bookService.findOne(idBook);
-		
-		assertThat(book).isNotNull();
-		assertThat(book.getIdBook()).isEqualTo(idBook);*/
+		verify(bookDAO,times(1)).findOne(eq(idBook));
 	}
 	
 	@Test

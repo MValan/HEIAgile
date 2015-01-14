@@ -50,7 +50,7 @@ public class MemberServiceImplTestCase {
 	}
 	
 	@Test
-	public void shouldListAll(){
+	public void shouldFindAll(){
 		
 		//WHEN
 		List<Member> allMembers = memberService.findAll();
@@ -63,12 +63,10 @@ public class MemberServiceImplTestCase {
 	@Test
 	public void shouldFindOne(){
 		
-		/*Long idMember = getMember1().getIdMember();
+		Long idMember = getMember1().getIdMember();		
+		memberService.findOne(idMember);
 		
-		Member member = memberService.findOne(idMember);
-		
-		assertThat(member).isNotNull();
-		assertThat(member.getIdMember()).isEqualTo(idMember);*/
+		verify(memberDAO,times(1)).findOne(eq(idMember));
 	}
 	
 	@Test

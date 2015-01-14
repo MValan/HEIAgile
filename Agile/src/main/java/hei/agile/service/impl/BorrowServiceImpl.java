@@ -2,11 +2,14 @@ package hei.agile.service.impl;
 
 import hei.agile.dao.BookDAO;
 import hei.agile.dao.BorrowDAO;
+import hei.agile.dao.ClosedDaysDAO;
 import hei.agile.dao.MemberDAO;
 import hei.agile.entity.Book;
 import hei.agile.entity.Borrow;
+import hei.agile.entity.ClosedDays;
 import hei.agile.entity.Member;
 import hei.agile.service.BorrowService;
+import hei.agile.service.OpenedDaysService;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -33,6 +36,12 @@ public class BorrowServiceImpl implements BorrowService {
 
 	@Inject
 	private MemberDAO memberDAO;
+	
+	@Inject
+	private ClosedDaysDAO closedDaysDAO;
+	
+	@Inject
+	private OpenedDaysService openedDaysService;
 
 	public String createAutocomplete() {
 
@@ -77,19 +86,46 @@ public class BorrowServiceImpl implements BorrowService {
 		return script;
 	}
 
+	@SuppressWarnings("deprecation")
 	public String getBorrowDate() {
 		Date today = new Date();
 		SimpleDateFormat FormattedDATE = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar c = Calendar.getInstance();
 		c.setTime(today);
 		c.add(Calendar.DATE, 21);
+		
+		List<ClosedDays> allClosedDays = closedDaysDAO.findAllOrderByDate();
+		
+		for (ClosedDays closedDays : allClosedDays) {
+			if(closedDays.getDay().getYear() == c.getTime().getYear() && closedDays.getDay().getMonth() == c.getTime().getMonth() && closedDays.getDay().getDate() == c.getTime().getDate()){
+
+				while(!(openedDaysService.isAnOpenedDay(c.getTime().getDay()))){
+					c.add(Calendar.DATE, 1);
+				}
+				c.add(Calendar.DATE, -1);
+			}
+		}
 		return (FormattedDATE.format(c.getTime()));
 	}
 	
+	@SuppressWarnings("deprecation")
 	public Date extendBorrowDate(Date date) {
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
 		c.add(Calendar.DATE, 21);
+		
+		List<ClosedDays> allClosedDays = closedDaysDAO.findAllOrderByDate();
+		
+		for (ClosedDays closedDays : allClosedDays) {
+			if(closedDays.getDay().getYear() == c.getTime().getYear() && closedDays.getDay().getMonth() == c.getTime().getMonth() && closedDays.getDay().getDate() == c.getTime().getDate()){
+
+				while(!(openedDaysService.isAnOpenedDay(c.getTime().getDay()))){
+					c.add(Calendar.DATE, 1);
+				}
+				c.add(Calendar.DATE, -1);
+			}
+		}
+		
 		return (c.getTime());
 	}
 

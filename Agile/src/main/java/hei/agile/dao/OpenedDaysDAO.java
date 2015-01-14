@@ -2,6 +2,7 @@ package hei.agile.dao;
 
 import java.util.List;
 
+import hei.agile.entity.ClosedDays;
 import hei.agile.entity.OpenedDays;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +16,4 @@ public interface OpenedDaysDAO extends JpaRepository<OpenedDays, Long> {
 	@Modifying(clearAutomatically = true)
 	@Query("update OpenedDays o set o.fromHour = :fromHour, o.toHour = :toHour WHERE o.day = :day")
 	public void updateOpenTime(@Param("fromHour") String fromHour, @Param("toHour") String toHour, @Param("day") String day);
-	
-	
 }

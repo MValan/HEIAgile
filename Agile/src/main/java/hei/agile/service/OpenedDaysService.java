@@ -14,4 +14,5 @@ public interface OpenedDaysService {
 
 	public String generateHtmlClosedDaysTable();
 	
+	public boolean isAnOpenedDay(Integer day);
 }

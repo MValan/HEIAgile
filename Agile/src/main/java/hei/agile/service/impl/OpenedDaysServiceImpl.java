@@ -3,7 +3,7 @@ package hei.agile.service.impl;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -105,6 +105,56 @@ public class OpenedDaysServiceImpl implements OpenedDaysService {
 	
 	public void updateOpenTime(String fromHour, String toHour, String day){
 		openedDaysDAO.updateOpenTime(fromHour, toHour, day);
+	}
+
+	@Override
+	public boolean isAnOpenedDay(Integer day) {
+		
+		List<OpenedDays> allOpenedDays = openedDaysDAO.findAll();
+		List<Integer> openedDaysInteger  = new ArrayList<Integer>();
+		
+		if(!(allOpenedDays.isEmpty())){
+		
+			for (OpenedDays openedDays : allOpenedDays) {
+				
+				switch (openedDays.getDay()) {
+				case "lundi":
+					openedDaysInteger.add(Calendar.MONDAY);
+					break;
+				case "mardi":
+					openedDaysInteger.add(Calendar.TUESDAY);
+					break;
+				case "mercredi":
+					openedDaysInteger.add(Calendar.WEDNESDAY);
+					break;
+				case "jeudi":
+					openedDaysInteger.add(Calendar.THURSDAY);
+					break;
+				case "vendredi":
+					openedDaysInteger.add(Calendar.FRIDAY);
+					break;
+				case "samedi":
+					openedDaysInteger.add(Calendar.SATURDAY);
+					break;
+				case "dimanche":
+					openedDaysInteger.add(Calendar.SUNDAY);
+					break;
+				}
+			}
+			
+			for (Integer dayOfWeek : openedDaysInteger) {
+				
+				if(day == dayOfWeek){
+					
+					return true;
+				}
+			}
+		}
+		else{
+			
+			return true; //on concidere que l'on est ouvert tous les jours de la semaine si rien n'est specifie
+		}
+		return false;
 	}
 	
 }

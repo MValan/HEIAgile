@@ -11,15 +11,16 @@
             src="http://oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
     <link rel="stylesheet"
           href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" media="screen" type="text/css" title="Design" href="../css/global.css" />
 </head>
 
 <body>
-
+<div class="container">
 <jsp:include page="../navbar.jsp">
 	<jsp:param name="activeTab" value="book" />
 </jsp:include>
 
-<div class="container">
+<div>
 
     <h1>Ajouter un Ouvrage</h1>
 
@@ -72,7 +73,7 @@
 
             <div class="row">
                     <div class="col-md-3 col-md-offset-3">
-                        <button type="submit" class="btn btn-primary" id="submit-form" style="display: none;">Ajouter
+                        <button type="submit" class="btn btn-success" id="submit-form" style="display: none;">Ajouter
                         </button>
                 </div>
             </div>
@@ -122,5 +123,6 @@
         })
     });
 </script>
+</div>
 </body>
 </html>

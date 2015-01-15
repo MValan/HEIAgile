@@ -21,13 +21,15 @@
 <script>
 
 </script>
+<link rel="stylesheet" media="screen" type="text/css" title="Design" href="../css/global.css" />
 </head>
 
 <body>
+<div class="container">
 <jsp:include page="../navbar.jsp">
 	<jsp:param name="activeTab" value="opendays" />
 </jsp:include>
-	<div class="container">
+	<div>
 		<h1>Gestion des jours d'ouverture</h1>
 		<br> <br> <br>
 		<form id="daysForm" class="form-horizontal">
@@ -44,7 +46,7 @@
 					</select> 
 					<label for="openHour"> De </label> <input type="time" name="openHour" id="openHour" value="00:00">
 					<label for="closeHour">à </label> <input type="time" name="closeHour" id="closeHour" value="00:00"> 
-					<input type="submit" id="submitNewDay" value="Ajouter">
+					<input type="submit" id="submitNewDay" value="Ajouter" class="btn btn-success">
 				</div>
 			</div>
 		</form>
@@ -77,7 +79,7 @@
 					</script>
 				</div>
 			</div>
-			<input type="submit" id="submitClosedDays" value="Ajouter">
+			<input type="submit" id="submitClosedDays" value="Ajouter" class="btn btn-success">
 		</form>
 		<div id="forHtml">${closedDates}</div>
 		<div id="table_ins_closed">
@@ -110,5 +112,6 @@
 	event.preventDefault();
 });
 	</script>
+</div>
 </body>
 </html>

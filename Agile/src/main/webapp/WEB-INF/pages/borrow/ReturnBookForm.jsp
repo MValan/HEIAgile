@@ -10,12 +10,14 @@
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 		<title>Insert title here</title>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="../css/global.css" />
 	</head>
 	<body>
+		<div class="container">
 		<jsp:include page="../navbar.jsp">
 			<jsp:param name="activeTab" value="return" />
 		</jsp:include>
-		<div class="container">
+		<div style="padding-bottom: 20px;">
 			<h1>Restitution d'Ouvrage</h1>
 			<br>
 			<br>
@@ -129,7 +131,7 @@
 					}
 					toappend+='</tbody>	';	
 					toappend+='</table>';
-					toappend+= '<button type="submit" class="btn btn-primary" id="submit">Valider</button>';
+					toappend+= '<button type="submit" class="btn btn-success" id="submit">Valider</button>';
 					toappend+='</form:form>';
 					$('#tofillwithborrowlist').append(toappend);
 				}else{
@@ -140,6 +142,7 @@
 					
 			</script>
 			<div id="booksListe" style="display: none;">${books}</div>
+		</div>
 		</div>
 	</body>
 </html>
